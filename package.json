@@ -1,0 +1,20 @@
+{
+  "name": "adminboard",
+  "version": "1.0.0",
+  "description": "Node.js의 Express 프레임워크 사용하여 Mysql 연동한 Restful API 구축",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mime": "^1.6.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
