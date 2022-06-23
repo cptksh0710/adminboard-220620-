@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+  <title>Kite: Admin</title>
+
+  <!-- CSS Plugins -->
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css">
+
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="assets/css/theme.min.css">
+
+  </head>
+
+  <body>
+
+    <!-- NAVBAR
+    ================================================== -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbar_main">
+
+          <!-- Navbar: Brand -->
+          <a class="navbar-brand" href="#">
+            Kite Admin
+          </a>
+          
+          <!-- Navbar: Toggle menu -->
+          <a href="#" class="navbar-btn navbar-left" id="sidebar__toggle">
+            <i class="fa fa-bars"></i>
+          </a>
+  
+          <!-- Navbar: Search form -->
+          <form class="navbar-form navbar-left hidden-xs" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-link">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Navbar: Sign out -->
+          <a href="#" class="navbar-btn navbar-right btn btn-accent">
+            Sign Out
+          </a>
+          
+          <!-- Navbar: Links -->
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="navbar-notification"></span>
+                <span class="hidden-xs">Messages</span> <i class="fa fa-envelope visible-xs-inline-block"></i>
+              </a>
+              <div class="dropdown-menu navbar-messages">
+                <a href="#" class="navbar-messages__item">
+                  <div class="navbar-messages__avatar">
+                    <img src="assets/img/user_2.jpg" alt="...">
+                  </div>
+                  <div class="navbar-messages__body">
+                    <h5 class="navbar-messages__sender">
+                      Jane Roe <small>2 hours ago</small>
+                    </h5>
+                    <p class="navbar-messages__content">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="navbar-messages__item">
+                  <div class="navbar-messages__avatar">
+                    <img src="assets/img/user_3.jpg" alt="...">
+                  </div>
+                  <div class="navbar-messages__body">
+                    <h5 class="navbar-messages__sender">
+                      John Doe <small>1 day ago</small>
+                    </h5>
+                    <p class="navbar-messages__content">
+                      Reprehenderit consequatur minima non nostrum aliquid, excepturi...
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="navbar-messages__item">
+                  <div class="navbar-messages__avatar">
+                    <img src="assets/img/user_4.jpg" alt="...">
+                  </div>
+                  <div class="navbar-messages__body">
+                    <h5 class="navbar-messages__sender">
+                     Mary Major <small>1 day ago</small>
+                    </h5>
+                    <p class="navbar-messages__content">
+                      Ipsa quaerat labore blanditiis consequuntur, rerum minima, aut...
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="navbar-messages__view-all">
+                  View All
+                </a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="navbar-notification hidden"></span>
+                <span class="hidden-xs">Alerts</span> <i class="fa fa-bell visible-xs-inline-block"></i>
+              </a>
+              <div class="dropdown-menu navbar-alerts">
+                <a href="#" class="navbar-alerts__item">
+                  <span class="label label-success">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  New user registered 
+                  <small>3 mins ago</small>
+                </a>
+                <a href="#" class="navbar-alerts__item">
+                  <span class="label label-danger">
+                    <i class="fa fa-bolt"></i>
+                  </span> 
+                  Server overloaded
+                  <small>2 hours ago</small>
+                </a>
+                <a href="#" class="navbar-alerts__item">
+                  <span class="label label-warning">
+                    <i class="fa fa-bell"></i>
+                  </span> 
+                  Server not responding 
+                  <small>3 hours ago</small>
+                </a>
+                <a href="#" class="navbar-alerts__item">
+                  <span class="label label-success">
+                    <i class="fa fa-user"></i>
+                  </span> 
+                  New user registered 
+                  <small>5 hours ago</small>
+                </a>
+                <a href="#" class="navbar-alerts__item">
+                  <span class="label label-danger">
+                    <i class="fa fa-bolt"></i>
+                  </span> 
+                  Database error
+                  <small>12 days ago</small>
+                </a>
+                <a href="#" class="navbar-alerts__view-all">
+                  View All
+                </a>
+              </div>
+            </li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- WRAPPER
+    ================================================== -->
+    <div class="wrapper">
+
+      <!-- SIDEBAR
+      ================================================== -->
+      <div class="sidebar">
+
+        <!-- Sidebar: Close button (mobile devices) -->
+        <div class="sidebar__close">
+          <img src="assets/img/icons/icon_close.svg" alt="Close sidebar">
+        </div>
+
+        <!-- Sidebar: User -->
+        <div class="sidebar__user">
+
+          <!-- Sidebar: User avatar -->
+          <div class="sidebar-user__avatar">
+            <img src="assets/img/user_1.jpg" alt="...">
+          </div>
+
+          <!-- Sidebar: User info -->
+          <a class="sidebar-user__info" role="button" href="#sidebar-user__nav" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-user__nav">
+            <h4>Richard Roe</h4>
+            <p>Administrator <i class="fa fa-caret-down"></i></p>
+          </a>
+
+        </div> <!-- / .sidebar__user -->
+
+        <!-- Sidebar: User nav -->
+        <nav class="sidebar-user__nav collapse" id="sidebar-user__nav">
+          <ul class="sidebar__nav">
+            <li>
+              <a href="profile.html">
+                <i class="fa fa-user"></i> Profile
+              </a>
+            </li>
+            <li>
+              <a href="edit-profile.html">
+                <i class="fa fa-edit"></i> Edit profile
+              </a>
+            </li>
+            <li>
+              <a href="inbox.html">
+                <i class="fa fa-envelope"></i> Inbox
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-sign-out"></i> Sign out
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Sidebar: Nav -->
+        <nav id="sidebar__nav">
+          <!-- Loaded from /sidebar.json -->
+        </nav>
+
+      </div>
+
+      <!-- MAIN CONTENT
+      ================================================== -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            
+            <h3 class="page-header">
+              Typography
+            </h3>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            
+            <!-- Headings -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Headings</h4>
+              </div>
+              <div class="panel-body">
+                <h1>h1. Bootstrap heading <small>Secondary</small></h1>
+                <h2>h2. Bootstrap heading <small>Secondary text</small></h2>
+                <h3>h3. Bootstrap heading <small>Secondary text</small></h3>
+                <h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+                <h5>h5. Bootstrap heading <small>Secondary text</small></h5>
+                <h6>h6. Bootstrap heading <small>Secondary text</small></h6>
+              </div>
+            </div>
+
+            <!-- Inline text -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Inline text elements</h4>
+              </div>
+              <div class="panel-body">
+                <p>
+                  You can use the mark tag to <mark>highlight</mark> text.
+                </p>
+                <p>
+                  <s>This line of text is meant to be treated as no longer accurate.</s>
+                </p>
+                <p>
+                  <u>This line of text will render as underlined</u>
+                </p>
+                <p>
+                  <small>This line of text is meant to be treated as fine print.</small>
+                </p>
+                <p>
+                  The following snippet of text is <strong>rendered as bold text</strong>
+                </p>
+                <p>
+                  The following snippet of text is <em>rendered as italicized text</em>
+                </p>
+              </div>
+            </div>
+
+            <!-- Transformation classes -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Transformation classes</h4>
+              </div>
+              <div class="panel-body">
+                <p class="text-lowercase">Lowercased text.</p>
+                <p class="text-uppercase">Uppercased text.</p>
+                <p class="text-capitalize">Capitalized text.</p>
+              </div>
+            </div>
+
+            <!-- Addresses -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Addresses</h4>
+              </div>
+              <div class="panel-body">
+                <address>
+                  <strong>Twitter, Inc.</strong><br>
+                  1355 Market Street, Suite 900<br>
+                  San Francisco, CA 94103<br>
+                  <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
+
+                <address>
+                  <strong>Full Name</strong><br>
+                  <a href="mailto:#">first.last@example.com</a>
+                </address>
+              </div>
+            </div>
+
+            <!-- Unordered list -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Unordered list</h4>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                  <li>Facilisis in pretium nisl aliquet</li>
+                  <li>Nulla volutpat aliquam velit
+                    <ul>
+                      <li>Phasellus iaculis neque</li>
+                      <li>Purus sodales ultricies</li>
+                      <li>Vestibulum laoreet porttitor sem</li>
+                      <li>Ac tristique libero volutpat at</li>
+                    </ul>
+                  </li>
+                  <li>Faucibus porta lacus fringilla vel</li>
+                  <li>Aenean sit amet erat nunc</li>
+                  <li>Eget porttitor lorem</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Unstyled list -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Unstyled list</h4>
+              </div>
+              <div class="panel-body">
+                <ul class="list-unstyled">
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                  <li>Facilisis in pretium nisl aliquet</li>
+                  <li>Nulla volutpat aliquam velit
+                    <ul>
+                      <li>Phasellus iaculis neque</li>
+                      <li>Purus sodales ultricies</li>
+                      <li>Vestibulum laoreet porttitor sem</li>
+                      <li>Ac tristique libero volutpat at</li>
+                    </ul>
+                  </li>
+                  <li>Faucibus porta lacus fringilla vel</li>
+                  <li>Aenean sit amet erat nunc</li>
+                  <li>Eget porttitor lorem</li>
+                </ul>
+
+              </div>
+            </div>
+
+            <!-- Horizontal description -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Horizontal description</h4>
+              </div>
+              <div class="panel-body">
+                <dl class="dl-horizontal"> <dt>Description lists</dt>
+                  <dd>A description list is perfect for defining terms.</dd> <dt>Euismod</dt>
+                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                  <dd>Donec id elit non mi porta gravida at eget metus.</dd> <dt>Malesuada porta</dt>
+                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd> <dt>Felis euismod semper eget lacinia</dt>
+                  <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+                </dl>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-xs-12 col-lg-6">
+
+            <!-- Paragraphs -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Paragraphs</h4>
+              </div>
+              <div class="panel-body">
+                <p class="lead">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at nostrum neque consequatur sequi iure adipisci eaque, dicta quo aspernatur libero voluptatibus veritatis reprehenderit cum. Tenetur, architecto saepe. Quidem, natus.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quas iste at laudantium quam accusamus ad, veniam harum nobis, saepe praesentium totam culpa, nihil autem enim! In ipsum reiciendis, vero.
+                </p>
+              </div>
+            </div>
+
+            <!-- Alignment classes -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Alignment classes</h4>
+              </div>
+              <div class="panel-body">
+                <p class="text-left">Left aligned text.</p>
+                <p class="text-center">Center aligned text.</p>
+                <p class="text-right">Right aligned text.</p>
+                <p class="text-justify">Justified text.</p>
+                <p class="text-nowrap">No wrap text.</p>
+              </div>
+            </div>
+
+            <!-- Abbreviations -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Abbreviations</h4>
+              </div>
+              <div class="panel-body">
+                <p>
+                  <abbr title="attribute">attr</abbr>
+                </p>
+                <p>
+                  <abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+                </p>
+              </div>
+            </div>
+
+            <!-- Blockquotes -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Blockquotes</h4>
+              </div>
+              <div class="panel-body">
+                <blockquote>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+                <blockquote>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+                <blockquote class="blockquote-reverse">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Ordered list -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Ordered list</h4>
+              </div>
+              <div class="panel-body">
+                <ol>
+                  <li>Lorem ipsum dolor sit amet</li>
+                  <li>Consectetur adipiscing elit</li>
+                  <li>Integer molestie lorem at massa</li>
+                  <li>Facilisis in pretium nisl aliquet</li>
+                  <li>Nulla volutpat aliquam velit</li>
+                  <li>Faucibus porta lacus fringilla vel</li>
+                  <li>Aenean sit amet erat nunc</li>
+                  <li>Eget porttitor lorem</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- Inline list -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Inline list</h4>
+              </div>
+              <div class="panel-body">
+                <ul class="list-inline">
+                  <li>Lorem ipsum</li>
+                  <li>Phasellus iaculis</li>
+                  <li>Nulla volutpat</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Description</h4>
+              </div>
+              <div class="panel-body">
+                <dl> <dt>Description lists</dt>
+                  <dd>A description list is perfect for defining terms.</dd> <dt>Euismod</dt>
+                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                  <dd>Donec id elit non mi porta gravida at eget metus.</dd> <dt>Malesuada porta</dt>
+                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                </dl>
+              </div>
+            </div>
+
+            <!-- Code -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">Code</h4>
+              </div>
+              <div class="panel-body">
+                <p>
+                  For example, <code>&lt;section&gt;</code> should be wrapped as inline.
+                </p>
+                <p>
+                  To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+                  To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+                </p>
+                <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+                <p>
+                  <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+                </p>
+                <p>
+                  <samp>This text is meant to be treated as sample output from a computer program.</samp>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+        
+        <!-- Footer -->
+        <footer class="page__footer">
+          <div class="row">
+            <div class="col-xs-12">
+              
+              <span class="page__footer__year"></span> &copy; Kite theme by <a href="http://simpleqode.com/">Simpleqode.com</a> | Purchase via <a href="https://wrapbootstrap.com/theme/kite-responsive-admin-template-WB0J0800M">Wrapbootstrap.com</a>
+            </div>
+          </div>
+        </footer>
+
+      </div> <!-- / .container-fluid -->
+
+    </div> <!-- / .wrapper -->
+
+
+    <!-- JavaScript
+    ================================================== -->
+    
+    <!-- JS Global -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- JS Plugins -->
+    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+    
+    <!-- JS Custom -->
+    <script src="assets/js/theme.min.js"></script>
+    <script src="assets/js/kite.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>

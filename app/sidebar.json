@@ -1,0 +1,38 @@
+[
+	{
+		"title": "Features",
+		"links": [
+			{
+				"icon": "fa fa-check-square",
+				"url": "register.html",
+				"caption": "Register"
+			},
+			{
+				"icon": "fa fa-check-square",
+				"url": "save.html",
+				"caption": "Save"
+			},
+			{
+				"icon": "fa fa-table",
+				"url": "index.html",
+				"caption": "Lists"
+			}
+		]
+	},
+	{
+		"title": "Test페이지(확인용)",
+		"links": [
+			{
+				"icon": "fa fa-exclamation-triangle",
+				"url": "#",
+				"caption": "Test",
+				"dropdown": [
+					{
+						"url": "http://localhost:3005/board",
+						"caption": "DBConnectTest"
+					}
+				]
+			}
+		]
+	}
+]
