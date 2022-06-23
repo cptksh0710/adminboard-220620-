@@ -7,12 +7,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res)=>{
-    res.json({message: "Hello World!"});
+    res.json({message: "Database 서버에 연결되었습니다!"});
 });
 
 require("./app/routes/customer.routes.js")(app);
 
 // 포트넘버 설정
-app.listen(3000, ()=>{
-    console.log("Server is running on port 3000.");
+app.listen(3005, ()=>{
+    console.log("Server is running on port 3005.");
 })
