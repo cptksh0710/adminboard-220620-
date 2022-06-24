@@ -1,16 +1,26 @@
 [
 	{
+		"title": "Admin",
+		"links": [
+			{
+				"icon": "fa fa-check-square",
+				"url": "users.html",
+				"caption": "Users"
+			}
+		]
+	},
+	{
 		"title": "Features",
 		"links": [
 			{
 				"icon": "fa fa-check-square",
-				"url": "register.html",
-				"caption": "Register"
+				"url": "import.html",
+				"caption": "Import"
 			},
 			{
 				"icon": "fa fa-check-square",
-				"url": "save.html",
-				"caption": "Save"
+				"url": "export.html",
+				"caption": "Export"
 			},
 			{
 				"icon": "fa fa-table",

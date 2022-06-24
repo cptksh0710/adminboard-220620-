@@ -103,6 +103,158 @@
 
       <!-- MAIN CONTENT
       ================================================== -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            
+            <h3 class="page-header">
+              profile <small>Account</small>
+            </h3>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-9">
+            
+            <form class="form-horizontal" data-parsley-validate>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">Info</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="name">Full name *</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="name" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Location</label>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option selected disabled>Select country</option>
+                        <option>Belgium</option>
+                        <option>Canada</option>
+                        <option>Denmark</option>
+                        <option>Estonia</option>
+                        <option>France</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Company name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Position</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">Contact info</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Work number</label>
+                    <div class="col-sm-10">
+                      <input type="tel" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Mobile number</label>
+                    <div class="col-sm-10">
+                      <input type="tel" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="email">E-mail address *</label>
+                    <div class="col-sm-10">
+                      <input type="email" id="email" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Work address</label>
+                    <div class="col-sm-10">
+                      <textarea rows="3" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                <h4 class="panel-title">Security</h4>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Old password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">New password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                      <div class="checkbox">
+                        <input type="checkbox" id="checkbox_1">
+                        <label for="checkbox_1">Make this account public</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="reset" class="btn btn-link">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            
+            <div class="profile__contact-info">
+              <div class="profile__contact-info-item">
+                <div class="profile__contact-info-icon">
+                  <i class="fa fa-check-square-o"></i>
+                </div>
+                <div class="profile__contact-info-body">
+                  <h5 class="profile__contact-info-heading">
+                    Form validation
+                  </h5>
+                    Full name and Email address fileds are set to be * Required to demostrate a form validation feature.
+                </div>
+              </div>
+              <div class="profile__contact-info-item">
+                <div class="profile__contact-info-icon">
+                  <i class="fa fa-commenting"></i>
+                </div>
+                <div class="profile__contact-info-body">
+                  <h5 class="profile__contact-info-heading">
+                    Quick tip
+                  </h5>
+                    You can use this block to inlude important information about Profile editing.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
 
     </div><!-- / .wrapper -->
 
