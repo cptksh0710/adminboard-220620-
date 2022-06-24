@@ -38,8 +38,12 @@
 				"caption": "Test",
 				"dropdown": [
 					{
+						"url": "http://localhost:3005/admin",
+						"caption": "DBConnect(admin)"
+					},
+					{
 						"url": "http://localhost:3005/board",
-						"caption": "DBConnectTest"
+						"caption": "DBConnect(board)"
 					}
 				]
 			}

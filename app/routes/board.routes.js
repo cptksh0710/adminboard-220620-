@@ -1,5 +1,5 @@
 module.exports = app =>{
-    const board = require("../controllers/customer.controller.js");
+    const board = require("../controllers/board.controller.js");
 
     // 튜플 생성
     app.post("/board", board.create);
