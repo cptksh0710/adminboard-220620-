@@ -1,0 +1,35 @@
+<div class="sidebar">
+  <!-- Sidebar: Close button (mobile devices) -->
+  <div class="sidebar__close">
+    <img src="assets/img/icons/icon_close.svg" alt="Close sidebar">
+  </div>
+
+  <!-- Sidebar: 접속자 -->
+  <div class="sidebar__user">
+    <!-- Sidebar: 접속자 정보 -->
+    <a class="sidebar-user__info" role="button" href="#sidebar-user__nav" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-user__nav">
+      <h4>admin</h4>
+      <p>관리자<i class="fa fa-caret-down"></i></p>
+    </a>
+  </div> <!-- / .sidebar__user -->
+
+  <!-- Sidebar: 접속자 nav -->
+  <nav class="sidebar-user__nav collapse" id="sidebar-user__nav">
+    <ul class="sidebar__nav">
+      <li>
+        <a href="/profile">
+          <i class="fa fa-user"></i> 프로필
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <i class="fa fa-sign-out"></i> 로그아웃
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Sidebar: Nav -->
+  <nav id="sidebar__nav">
+    <!-- Loaded from /sidebar.json -->
+  </nav>
+</div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <%- include('../partials/head');%>
+</head>
+
+<body>
+  <!-- NAVBAR ======================================== -->
+  <%- include('../partials/navbar');%>
+    <!-- WRAPPER ===================================== -->
+    <div class="wrapper">
+      <!-- SIDEBAR =================================== -->
+      <%- include('../partials/sidebar');%>
+        <!-- MAIN CONTENT ========================================= -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+
+              <h3 class="page-header">
+                코드관리
+              </h3>
+
+            </div>
+          </div> <!-- / .row -->
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- Lists -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Code Lists</h3>
+                </div>
+                <div>
+                  <button type="button" , class="btn btn-link" style="float:right;" , id="user_delete">삭제</button>
+                  <button type="button" , class="btn btn-link" style="float:right;" ,
+                    onclick="location.href='/code_reg'" ;>등록</button>
+                </div>
+
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table" id="datatable_8" data-toggle="datatable">
+                      <thead>
+                        <tr>
+                          <th>번호</th>
+                          <th>코드그룹</th>
+                          <th>코드명</th>
+                          <th>코드</th>
+                          <th>등록일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>대사관</td>
+                          <td>일본대사관</td>
+                          <td>A001231</td>
+                          <td><time datetime="2022-05-02">2022년 05월 02일</time></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div> <!-- / .panel -->
+            </div>
+          </div>
+        </div> <!-- / .container-fluid -->
+    </div> <!-- / .wrapper -->
+</body>
+
+</html>

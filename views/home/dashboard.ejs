@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <%- include('../partials/head');%>
+</head>
+
+<body>
+  <!-- NAVBAR ======================================== -->
+  <%- include('../partials/navbar');%>
+    <!-- WRAPPER ===================================== -->
+    <div class="wrapper">
+      <!-- SIDEBAR =================================== -->
+      <%- include('../partials/sidebar');%>
+      <!-- MAIN CONTENT ========================================= -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 class="page-header">
+              대쉬보드 <small>통계</small>
+            </h1>
+          </div>
+        </div> <!-- / .row -->
+        
+        <!-- Dashboard: Stats -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-3">
+            <div class="dashboard-stats__item dashboard-stats__item_red">
+              <i class="fa fa-comments"></i>
+              <h3 class="dashboard-stats__title">
+                <span class="count-to" data-from="0" data-to="1250">15</span> 
+                <small>총 자료수</small>
+              </h3>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-3">
+            <div class="dashboard-stats__item dashboard-stats__item_orange">
+              <i class="fa fa-globe"></i>
+              <h3 class="dashboard-stats__title">
+                <span class="count-to" data-from="0" data-to="5412">3</span> 
+                <small>오늘 등록한 자료수</small>
+              </h3>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-3">
+            <div class="dashboard-stats__item dashboard-stats__item_green">
+              <i class="fa fa-pie-chart"></i>
+              <h3 class="dashboard-stats__title">
+                <span class="count-to" data-from="0" data-to="4155">2</span> 
+                <small>가입 요청 수</small>
+              </h3>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-3">
+            <div class="dashboard-stats__item dashboard-stats__item_light-blue">
+              <i class="fa fa-eur"></i>
+              <h3 class="dashboard-stats__title">
+                <span class="count-to" data-from="0" data-to="105">4</span>명 
+                <small>총 가입자수</small>
+              </h3>
+            </div>
+          </div>
+        </div> <!-- / .row -->
+
+        <div class="row row-justified">
+          <!-- Dashboard: New users -->
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  최근 방문 사용자
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-hover dashboard__users">
+                    <thead>
+                      <tr>
+                        <th>이름</th>
+                        <th>ID</th>
+                        <th>권한</th>
+                        <th>시간</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="dashboard__username">
+                            김철수
+                          </div>
+                        </td>
+                        <td>
+                          <div class="dashboard__userid">
+                            fsdtuw4
+                          </div>
+                        </td>
+                        <td>
+                          <div class="dashboard__userpermission">
+                            사용자
+                          </div>
+                        </td>
+                        <td>
+                          <div class="dashboard__users__date">
+                            <time datetime="2022-06-21">2022-06-21 09:27:59</time>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table> <!-- / .dashboard__users -->
+                </div>
+              </div>
+              <div class="panel-footer hidden">
+                <a href="#" class="btn btn-primary">View all users</a> <a href="#" class="btn btn-link">Create a new user</a>
+              </div>
+            </div> <!-- / .panel -->
+          </div>
+        </div>
+
+      </div> <!-- / .container-fluid -->
+    </div> <!-- / .wrapper -->
+  </body>
+</html>
