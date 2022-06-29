@@ -49,15 +49,15 @@
 				"caption": "Test",
 				"dropdown": [
 					{
-						"url": "http://localhost:3005/admin",
+						"url": "http://localhost:3000/admin",
 						"caption": "DBConnect(admin)"
 					},
 					{
-						"url": "http://localhost:3005/board",
+						"url": "http://localhost:3000/board",
 						"caption": "DBConnect(board)"
 					},
 					{
-						"url": "http://localhost:3005/code",
+						"url": "http://localhost:3000/codetable",
 						"caption": "DBConnect(code)"
 					}
 				]

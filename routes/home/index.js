@@ -11,6 +11,7 @@ router.get("/register", ctrl.register);
 router.get("/dashboard", ctrl.dashboard);
 router.get("/profile", ctrl.profile);
 router.get("/userlist", ctrl.userlist);
+router.get("/user_reg", ctrl.userreg);
 router.get("/import", ctrl.dataimport);
 router.get("/code", ctrl.code);
 router.get("/code_reg", ctrl.codereg);

@@ -21,6 +21,10 @@ function userlist (request,response){
     response.render("home/userlist");
 };
 
+function userreg (request,response){
+    response.render("home/user_reg");
+};
+
 function dataimport (request,response){
     response.render("home/import");
 };
@@ -47,6 +51,7 @@ module.exports = {
     profile,
     dashboard,
     userlist,
+    userreg,
     dataimport,
     code,
     codereg,
