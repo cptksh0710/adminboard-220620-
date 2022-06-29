@@ -2,18 +2,34 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
+const home = require("./routes/home");
+
+app.use("/", home);
+app.use(express.static("app"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", (req, res)=>{
-    res.json({message: "Database 서버에 연결되었습니다!"});
+app.set("views", "./views");
+app.set("view engine", "ejs");
+
+app.get("/", function(request,response){
+  response.render("home/index");
+});
+
+app.get("/login", function(request,response){
+  response.render("home/login");
+});
+
+app.get("/login", function(request,response){
+  response.render("home/dashboard");
 });
 
 require("./app/routes/admin.routes.js")(app);
 require("./app/routes/board.routes.js")(app);
+require("./app/routes/code.routes.js")(app);
 
 // 포트넘버 설정
-app.listen(3005, ()=>{
-    console.log("Server is running on port 3005.");
+app.listen(3000, ()=>{
+    console.log("3000 port로 서버가 가동되었습니다.");
 })

@@ -19,26 +19,9 @@
   "homepage": "",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "mime": "^1.6.0",
     "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.2",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-cache": "^0.4.5",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-less": "^3.3.0",
-    "gulp-uglify": "^2.0.0",
-    "gulp-useref": "^3.1.2",
-    "less-plugin-autoprefix": "^1.5.1",
-    "run-sequence": "^1.2.2",
-    "stream-combiner2": "^1.1.1"
-  },
-  "overrides": {
-    "graceful-fs": "^4.2.9"
   }
 }

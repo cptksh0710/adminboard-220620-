@@ -4,8 +4,8 @@
 		"links": [
 			{
 				"icon": "fa fa-check-square",
-				"url": "users.html",
-				"caption": "Users"
+				"url": "/userlist",
+				"caption": "사용자목록"
 			}
 		]
 	},
@@ -14,18 +14,29 @@
 		"links": [
 			{
 				"icon": "fa fa-check-square",
-				"url": "import.html",
-				"caption": "Import"
+				"url": "/dashboard",
+				"caption": "대쉬보드"
 			},
 			{
 				"icon": "fa fa-check-square",
-				"url": "export.html",
-				"caption": "Export"
+				"url": "/import",
+				"caption": "자료등록"
+			},
+
+			{
+				"icon": "fa fa-check-square",
+				"url": "/code",
+				"caption": "코드관리"
+			},
+			{
+				"icon": "fa fa-check-square",
+				"url": "/export",
+				"caption": "결과물설정"
 			},
 			{
 				"icon": "fa fa-table",
-				"url": "index.html",
-				"caption": "Lists"
+				"url": "/datalist",
+				"caption": "자료리스트"
 			}
 		]
 	},
@@ -44,6 +55,10 @@
 					{
 						"url": "http://localhost:3005/board",
 						"caption": "DBConnect(board)"
+					},
+					{
+						"url": "http://localhost:3005/code",
+						"caption": "DBConnect(code)"
 					}
 				]
 			}
