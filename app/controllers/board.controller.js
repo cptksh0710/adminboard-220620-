@@ -9,7 +9,6 @@ exports.create = (req,res)=>{
     };
 
     const board = new Board({
-        no: req.body.boardno,
         title: req.body.title,
         content: req.body.content,
         writer: req.body.writer
@@ -38,24 +37,24 @@ exports.findAll = (req,res)=>{
       });
 };
 
-// title로 조회
+// boardno로 조회
 exports.findOne = (req,res)=>{
-  Board.findById(req.params.Title, (err, data) => {
+  Board.findById(req.params.boardNo, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found title ${req.params.Title}.`
+              message: `Not found Board with no ${req.params.boardNo}.`
             });
           } else {
             res.status(500).send({
-              message: "Error retrieving title " + req.params.Title
+              message: "Error retrieving title " + req.params.boardNo
             });
           }
         } else res.send(data);
       });
 };
 
-// title로 갱신
+// boardno로 갱신
 exports.update = (req,res)=>{
     // Validate Request
   if (!req.body) {
@@ -65,17 +64,17 @@ exports.update = (req,res)=>{
   }
 
   Board.updateById(
-    req.params.Title,
+    req.params.boardNo,
     new Board(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found title ${req.params.Title}.`
+            message: `Not found boardno ${req.params.boardNo}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating title " + req.params.Title
+            message: "Error updating boardno " + req.params.boardNo
           });
         }
       } else res.send(data);
@@ -83,20 +82,20 @@ exports.update = (req,res)=>{
   );
 };
 
-// title로 삭제
+// boardno로 삭제
 exports.delete = (req,res)=>{
-  Board.remove(req.params.Title, (err, data) => {
+  Board.remove(req.params.boardNo, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found title ${req.params.Title}.`
+              message: `Not found boardno ${req.params.boardNo}.`
             });
           } else {
             res.status(500).send({
-              message: "Could not delete title " + req.params.Title
+              message: "Could not delete boardno " + req.params.boardNo
             });
           }
-        } else res.send({ message: `Customer was deleted successfully!` });
+        } else res.send({ message: `Boardno was deleted successfully!` });
       });
 };
 

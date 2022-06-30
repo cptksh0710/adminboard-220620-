@@ -2,13 +2,12 @@ const sql = require("./db.js");
 
 // 생성자 
 const Board = function(board){
-    this.no = board.boardno;
     this.title = board.title;
     this.content = board.content;
     this.writer = board.writer;
 };
 
-// customer 튜플 추가 
+// board 튜플 추가 
 Board.create = (newBoard, result)=>{
     sql.query("INSERT INTO board SET ?", newBoard, (err, res)=>{
         if(err){
@@ -17,14 +16,14 @@ Board.create = (newBoard, result)=>{
             return;
         }
 
-        console.log("Created contents: ",{id:res.insertTitle, ...newBoard });
-        result(null, {id: res.inseertTitle, ...newBoard});
+        console.log("Created board: ",{boardno:res.insertboardNo, ...newBoard });
+        result(null, {boardno: res.insertboardNo, ...newBoard});
     });
 };
 
-// customer id로 조회
-Board.findById = (Title, result) => {
-    sql.query(`SELECT * FROM board WHERE title = ${Title}`, (err, res) => {
+// boardno로 조회
+Board.findById = (boardNo, result) => {
+    sql.query("SELECT * FROM board WHERE boardno = ?",boardNo, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -32,17 +31,17 @@ Board.findById = (Title, result) => {
       }
   
       if (res.length) {
-        console.log("found title: ", res[0]);
+        console.log("found no: ", res[0]);
         result(null, res[0]);
         return;
       }
   
-      // not found Customer with the id
+      // not found Board with the boardno
       result({ kind: "not_found" }, null);
     });
   };
 
-// customer 전체 조회
+// board 전체 조회
 Board.getAll = result =>{
     sql.query('SELECT * FROM board', (err, res)=>{
         if(err){
@@ -56,11 +55,11 @@ Board.getAll = result =>{
     });
 };
 
-// customer id로 수정
-Board.updateById = (title, board, result) => {
+// boardno로 수정
+Board.updateById = (boardno, board, result) => {
     sql.query(
-      "UPDATE board SET no = ?, content = ?, writer = ? WHERE title = ?",
-      [board.no, board.content, board.writer, title],
+      "UPDATE board SET title = ?, content = ?, writer = ? WHERE boardno = ?",
+      [board.title, board.content, board.writer, boardno],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -74,15 +73,15 @@ Board.updateById = (title, board, result) => {
           return;
         }
   
-        console.log("updated title: ", { title: title, ...board });
-        result(null, { title: title, ...board });
+        console.log("updated boardno: ", { boardno: boardno, ...board });
+        result(null, { boardno: boardno, ...board });
       }
     );
   };
 
-// customer id로 삭제
-Board.remove = (id, result)=>{
-    sql.query('DELETE FROM board WHERE title = ?',title, (err, res)=>{
+// boardno로 삭제
+Board.remove = (boardno, result)=>{
+    sql.query("DELETE FROM board WHERE boardno = ?", boardno, (err, res)=>{
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -90,17 +89,17 @@ Board.remove = (id, result)=>{
         }
 
         if(res.affectedRows ==0){
-            // id 결과가 없을 시 
+            // boardno 결과가 없을 시 
             result({kind: "not_found"}, null);
             return;
         }
 
-        console.log("deleted title: ", title);
+        console.log("deleted boardno: ", boardno);
         result(null, res);
     });
 };
 
-// customer 전체 삭제
+// board 전체 삭제
 Board.removeAll = result =>{
     sql.query('DELETE FROM board',(err, res)=>{
         if(err){

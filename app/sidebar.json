@@ -49,8 +49,8 @@
 				"caption": "Test",
 				"dropdown": [
 					{
-						"url": "http://localhost:3000/admin",
-						"caption": "DBConnect(admin)"
+						"url": "http://localhost:3000/user",
+						"caption": "DBConnect(user)"
 					},
 					{
 						"url": "http://localhost:3000/board",

@@ -75,20 +75,13 @@
 
 
                     <div class="form-group">
-                      <label for="subject">코드명</label>
+                      <label for="subject">게시판 ID</label>
                       <select class="form-control">
-                        <option selected disabled>코드를 선택하세요.</option>
-                        <option value="A001">미국대사관</option>
-                        <option>영국대사관</option>
-                        <option>일본대사관</option>
-                        <option>아시아</option>
-                        <option>유럽</option>
+                        <option selected disabled>ID를 선택하세요.</option>
+                        <option value="board_id1">기술유출기사</option>
+                        <option value="board_id2">기타</option>
                       </select>
                     </div>
-
-
-
-
                     <div class="form-group">
                       <label for="subject">제목</label>
                       <input type="text" class="form-control" id="subject">
@@ -96,6 +89,32 @@
                     <div class="form-group">
                       <label for="contents">본문</label>
                       <textarea class="form-control" rows="10" id="contents"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">출처 URL</label>
+                      <input type="text" class="form-control" id="subject">
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">국가코드</label>
+                      <select class="form-control">
+                        <option selected disabled>국가코드를 선택하세요.</option>
+                        <option value="nation_code1">kor</option>
+                        <option value="nation_code2">eng</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">언어코드</label>
+                      <select class="form-control">
+                        <option selected disabled>언어코드를 선택하세요.</option>
+                        <option value="nation_code1">ko</option>
+                        <option value="nation_code2">en</option>
+                        <option value="nation_code2">jp</option>
+                        <option value="nation_code2">ru</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">게시날짜</label>
+                      <input type="text" class="form-control" id="subject" placeholder="ex)2022-01-01">
                     </div>
                     <div class="form-group">
                       <label for="UploadFile">Upload</label>

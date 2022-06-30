@@ -1,4 +1,4 @@
-const Admin = require("../models/admin.model.js");
+const User = require("../models/user.model.js");
 
 // 새 객체 생성
 exports.create = (req,res)=>{
@@ -8,17 +8,14 @@ exports.create = (req,res)=>{
         });
     };
 
-    const admin = new Admin({
-        no: req.body.no,
+    const user = new User({
+        name: req.body.name,
         id: req.body.id,
-        password: req.body.password,
-        permission: req.body.permission,
-        reg_date: req.body.reg_date,
-        mod_date: req.body.mod_date
+        password: req.body.password
     });
 
     // 데이터베이스에 저장
-    Admin.create(admin, (err, data) =>{
+    User.create(user, (err, data) =>{
         if(err){
             res.status(500).send({
                 message:
@@ -30,7 +27,7 @@ exports.create = (req,res)=>{
 
 // 전체 조회 
 exports.findAll = (req,res)=>{
-  Admin.getAll((err, data) => {
+  User.getAll((err, data) => {
         if (err)
           res.status(500).send({
             message:
@@ -40,24 +37,24 @@ exports.findAll = (req,res)=>{
       });
 };
 
-// id로 조회
+// admin테이블 no로 조회
 exports.findOne = (req,res)=>{
-  Admin.findById(req.params.Id, (err, data) => {
+  User.findById(req.params.userNo, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found id ${req.params.Id}.`
+              message: `Not found no ${req.params.userNo}.`
             });
           } else {
             res.status(500).send({
-              message: "Error retrieving title " + req.params.Id
+              message: "Error retrieving no " + req.params.userNo
             });
           }
         } else res.send(data);
       });
 };
 
-// id로 갱신
+// no로 갱신
 exports.update = (req,res)=>{
     // Validate Request
   if (!req.body) {
@@ -66,18 +63,18 @@ exports.update = (req,res)=>{
     });
   }
 
-  Admin.updateById(
-    req.params.Id,
-    new Admin(req.body),
+  User.updateById(
+    req.params.userNo,
+    new User(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found title ${req.params.Id}.`
+            message: `Not found No ${req.params.userNo}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating title " + req.params.Id
+            message: "Error updating title " + req.params.userNo
           });
         }
       } else res.send(data);
@@ -85,17 +82,17 @@ exports.update = (req,res)=>{
   );
 };
 
-// id로 삭제
+// no로 삭제
 exports.delete = (req,res)=>{
-  Admin.remove(req.params.Id, (err, data) => {
+  User.remove(req.params.userNo, (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found id ${req.params.Id}.`
+              message: `Not found No ${req.params.userNo}.`
             });
           } else {
             res.status(500).send({
-              message: "Could not delete id " + req.params.Id
+              message: "Could not delete No " + req.params.userNo
             });
           }
         } else res.send({ message: `User was deleted successfully!` });
@@ -104,7 +101,7 @@ exports.delete = (req,res)=>{
 
 // 전체 삭제
 exports.deleteAll = (req,res)=>{
-  Admin.removeAll((err, data) => {
+  User.removeAll((err, data) => {
         if (err)
           res.status(500).send({
             message:

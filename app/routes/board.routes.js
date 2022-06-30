@@ -7,14 +7,14 @@ module.exports = app =>{
     // 전체 조회 
     app.get("/board", board.findAll);
 
-    // title로 조회
-    app.get("/board/:title", board.findOne);
+    // boardno로 조회
+    app.get("/board/:boardNo", board.findOne);
 
-    // title로 수정
-    app.put("/board/:title", board.update);
+    // boardno로 수정
+    app.put("/board/:boardNo", board.update);
 
-    // title로 삭제
-    app.delete("/board/:title", board.delete);
+    // boardno로 삭제
+    app.delete("/board/:boardNo", board.delete);
 
     // 전체 삭제
     app.delete("/board", board.deleteAll);

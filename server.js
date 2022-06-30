@@ -25,9 +25,9 @@ app.get("/login", function(request,response){
   response.render("home/dashboard");
 });
 
-require("./app/routes/admin.routes.js")(app);
 require("./app/routes/board.routes.js")(app);
 require("./app/routes/code.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 
 // 포트넘버 설정
 app.listen(3000, ()=>{
