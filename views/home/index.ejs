@@ -21,16 +21,16 @@
             </div> <!-- / .panel-heading -->
 
             <div class="panel-body">
-              <form>
+              <form action="/auth" method="POST">
                 <div class="form-group">
-                  <label for="sign-in__email">ID</label>
-                  <input type="email" class="form-control" id="id">
+                  <label for="user_id">ID</label>
+                  <input type="text" name="user_id" class="form-control" id="user_id">
                 </div>
                 <div class="form-group">
-                  <label for="sign-in__password">패스워드</label>
-                  <input type="email" class="form-control" id="password">
+                  <label for="user_password">패스워드</label>
+                  <input type="password" name="password" class="form-control" id="password">
                 </div>
-                <button type="button" class="btn btn-block btn-primary" onClick="location.href='/dashboard'">
+                <button type="submit" class="btn btn-block btn-primary">
                   로그인
                 </button>
               </form>

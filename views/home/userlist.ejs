@@ -38,8 +38,8 @@
                     <table class="table" id="usertable" data-toggle="datatable">
                       <thead>
                         <tr>
-                          <th>선택</th>
                           <th>번호</th>
+                          <th>이름</th>
                           <th>ID</th>
                           <th>권한</th>
                           <th>가입날짜</th>
@@ -47,46 +47,30 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <%
+                        if(userData.length!=0){
+                          var i=1;
+                          userData.forEach(function(data){
+                            if(data.permission == 9){
+                              var permission = '관리자';
+                            } else{
+                              var permission = '사용자';
+                            }
+                        %>
                         <tr>
-                          <td><input type="checkbox" name="user1" /></td>
-                          <td>1</td>
-                          <td>admin</td>
-                          <td>관리자</td>
-                          <td><time datetime="2022-01-01">2022년 01월 01일</time></td>
-                          <td><time datetime="2022-06-20">2022년 06월 20일</time></td>
-                          <td><a class="ls-modal btn btn-link" data-toggle="modal"
-                              href="modalList.do?c_num=${list.c_num}" data-target="#modal1">상세조회</a></td>
+                          <td><%=data.no%></td>
+                          <td><%=data.name%></td>
+                          <td><%=data.id%></td>
+                          <td><%=permission%></td>
+                          <td><%=data.reg_date%></td>
+                          <td><%=data.mod_date%></td>
                         </tr>
+                      <% i++; }) %>
+                      <% } else{ %>
                         <tr>
-                          <td><input type="checkbox" name="user2" /></td>
-                          <td>2</td>
-                          <td>toast</td>
-                          <td>사용자</td>
-                          <td><time datetime="2022-03-14">2022년 03월 14일</time></td>
-                          <td><time datetime="2022-05-12">2022년 05월 12일</time></td>
-                          <td><a class="ls-modal btn btn-link" data-toggle="modal"
-                              href="modalList.do?c_num=${list.c_num}" data-target="#modal2">상세조회</a></td>
+                          <td colspan="6">데이터가 없습니다.</td>
                         </tr>
-                        <tr>
-                          <td><input type="checkbox" name="user3" /></td>
-                          <td>3</td>
-                          <td>cat432</td>
-                          <td>사용자</td>
-                          <td><time datetime="2022-04-03">2022년 04월 03일</time></td>
-                          <td><time datetime="2022-04-10">2022년 04월 10일</time></td>
-                          <td><a class="ls-modal btn btn-link" data-toggle="modal"
-                              href="modalList.do?c_num=${list.c_num}" data-target="#modal3">상세조회</a></td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name="user4" /></td>
-                          <td>4</td>
-                          <td>fsdtuw4</td>
-                          <td>사용자</td>
-                          <td><time datetime="2022-05-12">2022년 05월 12일</time></td>
-                          <td><time datetime="2022-06-21">2022년 06월 21일</time></td>
-                          <td><a class="ls-modal btn btn-link" data-toggle="modal"
-                              href="modalList.do?c_num=${list.c_num}" data-target="#modal4">상세조회</a></td>
-                        </tr>
+                      <% } %>
                       </tbody>
                     </table>
                   </div>
@@ -163,7 +147,7 @@
                           <tr>
                             <td>toast</td>
                             <td>@revies535<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>박지훈</td>
+                            <td>김남주</td>
                             <td>사용자</td>
                             <td>2022-03-14</td>
                             <td>2022-05-12</td>
@@ -207,7 +191,7 @@
                           <tr>
                             <td>cat432</td>
                             <td>jkefdsktw!<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>이지영</td>
+                            <td>나도현</td>
                             <td>사용자</td>
                             <td>2022-04-03</td>
                             <td>2022-04-10</td>
@@ -251,7 +235,7 @@
                           <tr>
                             <td>fsdtuw4</td>
                             <td>gd$3sdfs<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>김철수</td>
+                            <td>도슬기</td>
                             <td>사용자</td>
                             <td>2022-05-12</td>
                             <td>2022-06-21</td>
