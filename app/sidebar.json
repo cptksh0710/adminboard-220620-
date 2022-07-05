@@ -1,6 +1,6 @@
 [
 	{
-		"title": "Admin",
+		"title": "관리자 메뉴",
 		"links": [
 			{
 				"icon": "fa fa-check-square",
@@ -10,7 +10,7 @@
 		]
 	},
 	{
-		"title": "Features",
+		"title": "메뉴",
 		"links": [
 			{
 				"icon": "fa fa-check-square",

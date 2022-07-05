@@ -42,11 +42,10 @@ router.get('/logout', function (req, res) {
   });
 });*/
 
-
 router.get("/logout", async function (req, res, next) {
   var session = req.session;
   try {
-    if (session.user) {
+    if (session.userid) {
       //세션정보가 존재하는 경우
       await req.session.destroy(function (err) {
         if (err) console.log(err);
