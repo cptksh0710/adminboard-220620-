@@ -2,7 +2,6 @@
 
 const express = require("express");
 const router = express.Router();
-const db = require('../../app/models/db.js');
 const ctrl = require("./home.ctrl");
 var passport = require('../../app/config/passport.js')
 
@@ -11,14 +10,7 @@ router.get("/", ctrl.start);
 router.get("/register", ctrl.register);
 router.get("/dashboard", ctrl.dashboard);
 router.get("/profile", ctrl.profile);
-router.get("/userlist", function(req,res,next){
-  var sql = "SELECT no, name, id, password, permission, date_format(reg_date,'%Y-%m-%d %H:%i:%s') reg_date, "+
-            " date_format(mod_date,'%Y-%m-%d %H:%i:%s') mod_date from user;";
-  db.query(sql, function (err, data, fields) {
-  if (err) throw err;
-  res.render('home/userlist', { title: 'User List', userData: data});
-  });
-});
+router.get("/userlist", ctrl.userlist);
 router.get("/user_reg", ctrl.userreg);
 router.get("/import", ctrl.dataimport);
 router.get("/code", ctrl.code);

@@ -3,7 +3,71 @@
 
 <head>
   <%- include('../partials/head');%>
+
+  <script>
+    /*=== 체크박스 관련 스크립트 ===*/
+    var check = false;
+    function CheckAll(){
+      var chk = document.getElementsByName("chk_unit[]");
+      if(check == false){
+        check = true;
+        for(var i=0; i<chk.length;i++){
+          chk[i].checked = true; //모두 체크
+        }
+      }else{
+        check = false;
+        for(var i=0; i<chk.length;i++){ 
+          chk[i].checked = false; //모두 해제
+        }
+      }
+    }
+
+    // 선택된 체크박스 번호 반환 함수
+    function selectRow() {
+      var chk = document.getElementsByName("chk_unit[]"); // 체크 박스객체
+      var len = chk.length; //체크박스의 전체 개수
+      var checkRow = '';    //체크된 체크박스의 value를 담기위한 변수
+      var checkCnt = 0;     //체크된 체크박스의 개수
+      var checkLast = '';   //체크된 체크박스 중 마지막 체크박스의 인덱스를 담기위한 변수
+      var rowid = '';       //체크된 체크박스의 모든 value의 값
+      var cnt = 0;
+
+      for(var i=0; i<len; i++){
+        if(chk[i].checked == true){
+          checkCnt++;       //체크된 체크박스의 개수
+          checkLast = i;    //체크된 체크박스의 인덱스
+        }
+      }
+
+      for(var i=0; i<len; i++){
+        if(chk[i].checked == true){ //체크가 되어있는 값 구분
+          checkRow = chk[i].value;
+
+          if(checkCnt == 1){                  //체크된 체크박스의 개수가 한 개 일때,
+            rowid += "'"+checkRow+"'";        //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+          }else{                              //체크된 체크박스의 개수가 여러 개 일때,
+            if(i == checkLast){               //체크된 체크박스 중 마지막 체크박스일 때,
+              rowid += "'"+checkRow+"'";      //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+            }else{
+              rowid += "'"+checkRow+"',";     //'value',의 형태 (뒤에 ,(콤마)가 붙게)
+            }
+          }
+          cnt++;
+          checkRow = '';    //checkRow 초기화
+        }
+        console.log(rowid);        //'value1', 'value2', 'value3' 의 형태로 출력
+      }
+    }
+  </script>
 </head>
+
+<!-- 버튼 간격 스타일-->
+<style>
+  .edit-button{
+    float: right;
+    margin: -15px;
+  }
+</style>
 
 <body>
   <!-- NAVBAR ======================================== -->
@@ -28,12 +92,18 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Lists</h3>
+                  <div class="edit-button">
+                    <button type="button" , class="btn btn-link", onclick="location.href=#" ;>등록</button>
+                    <button type="button" , class="btn btn-link", id="user_delete", onclick="javascript:selectRow()">삭제</button>
+                    <button type="button" , class="btn btn-link", id="pass_rest">초기화</button>
+                  </div>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">
                     <table class="table" id="datatable_8" data-toggle="datatable">
                       <thead>
                         <tr>
+                          <th><input type="checkbox" name="checkall" onclick="javascript:CheckAll()"></th>
                           <th>번호</th>
                           <th>제목</th>
                           <th>내용</th>
@@ -42,130 +112,30 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <%
+                        if(dataList.length!=0){
+                          var i=1;
+                          dataList.forEach(function(data){
+                        %>
                         <tr>
-                          <td>1</td>
-                          <td>작별인사</td>
-                          <td>김영하 장편소설</td>
-                          <td>김영하</td>
-                          <td><time datetime="2022-05-02">2022년 05월 02일</time></td>
+                          <td><input type="checkbox" name="chk_unit[]" id="chk_no" value="<%=data.boardno%>" /></td>
+                          <td><%=data.boardno%></td>
+                          <td><%=data.title%></td>
+                          <td><%=data.content%></td>
+                          <td><%=data.writer%></td>
+                          <td><%=data.timestr%></td>
                         </tr>
-
+                        <% i++; }) %>
+                        <% } else{ %>
                         <tr>
-                          <td>2</td>
-                          <td>역행자</td>
-                          <td>돈,시간,운명으로부터 완전한 자유를 얻는 7단계 인생 공략집</td>
-                          <td>자청</td>
-                          <td><time datetime="2022-05-30">2022년 05월 30일</time></td>
+                          <td colspan="5">데이터가 없습니다.</td>
                         </tr>
-
-                        <tr>
-                          <td>3</td>
-                          <td>인플레이션에서 살아남기</td>
-                          <td>애프터 인플레, 누가 돈을 벌까?</td>
-                          <td>오건영</td>
-                          <td><time datetime="2022-05-23">2022년 05월 23일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>4</td>
-                          <td>불편한 편의점</td>
-                          <td>김호연 장편소설</td>
-                          <td>김호연</td>
-                          <td><time datetime="2022-04-20">2022년 04월 20일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>5</td>
-                          <td>기분을 관리하면 인생이 관리된다</td>
-                          <td>김다슬 에세이</td>
-                          <td>김다슬</td>
-                          <td><time datetime="2022-04-12">2022년 04월 12일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>6</td>
-                          <td>변화하는 세계 질서</td>
-                          <td>변화하는 세계 질서 속에서 살아남기 위한 빅사이클</td>
-                          <td>레이 달리오</td>
-                          <td><time datetime="2022-06-01">2022년 06월 01일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>7</td>
-                          <td>세상의 마지막 기차역</td>
-                          <td>판타지 휴머니즘 소설</td>
-                          <td>무라케 다케시</td>
-                          <td><time datetime="2022-05-09">2022년 05월 09일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>8</td>
-                          <td>마음의 법칙</td>
-                          <td>사람의 마음을 사로잡는 51가지 심리학</td>
-                          <td>폴커 키츠</td>
-                          <td><time datetime="2022-02-10">2022년 02월 10일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>9</td>
-                          <td>멘탈을 바꿔야 인생이 바뀐다</td>
-                          <td>나의 잠재력을 최대로 끌어올려 100% 성공하는 삶을 사는 방법</td>
-                          <td>박세니</td>
-                          <td><time datetime="2022-04-30">2022년 04월 30일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>10</td>
-                          <td>흔한남매 10</td>
-                          <td>인기 크리에이터 흔한남매 코믹북 10권</td>
-                          <td>흔한남매(원작)</td>
-                          <td><time datetime="2022-04-28">2022년 04월 28일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>11</td>
-                          <td>저만치 혼자서(양장본 HardCover)</td>
-                          <td>김훈 소설</td>
-                          <td>김훈</td>
-                          <td><time datetime="2022-06-01">2022년 06월 01일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>12</td>
-                          <td>최재천의 공부</td>
-                          <td>어떻게 배우며 살 것인가</td>
-                          <td>최재천</td>
-                          <td><time datetime="2022-05-18">2022년 05월 18일</time></td>
-                        </tr>
-                        <tr>
-                          <td>13</td>
-                          <td>설민석의 한국사 대모험 21</td>
-                          <td>삼국사기 속 진짜 온달 이야기가 시작된다!</td>
-                          <td>설민석</td>
-                          <td><time datetime="2022-05-27">2022년 05월 27일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>14</td>
-                          <td>어서 오세요, 휴남동 서점입니다 (여름 숲 에디션)</td>
-                          <td>황보름 장편소설</td>
-                          <td>황보름</td>
-                          <td><time datetime="2022-01-17">2022년 01월 17일</time></td>
-                        </tr>
-
-                        <tr>
-                          <td>15</td>
-                          <td>흔한남매 과학 탐험대 5: 물리 1(양장본 HardCover)</td>
-                          <td>흔한남매와 함께하는 과학 첫걸음</td>
-                          <td>흔한남매(원작)</td>
-                          <td><time datetime="2022-06-16">2022년 06월 16일</time></td>
-                        </tr>
+                      <% } %>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div> <!-- / .panel -->
-
             </div>
           </div>
         </div> <!-- / .container-fluid -->
