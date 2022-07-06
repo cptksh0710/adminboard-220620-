@@ -3,7 +3,71 @@
 
 <head>
   <%- include('../partials/head');%>
+
+  <script>
+    /*=== 체크박스 관련 스크립트 ===*/
+    var check = false;
+    function CheckAll(){
+      var chk = document.getElementsByName("chk_unit[]");
+      if(check == false){
+        check = true;
+        for(var i=0; i<chk.length;i++){
+          chk[i].checked = true; //모두 체크
+        }
+      }else{
+        check = false;
+        for(var i=0; i<chk.length;i++){ 
+          chk[i].checked = false; //모두 해제
+        }
+      }
+    }
+
+    // 선택된 체크박스 번호 반환 함수
+    function selectRow() {
+      var chk = document.getElementsByName("chk_unit[]"); // 체크 박스객체
+      var len = chk.length; //체크박스의 전체 개수
+      var checkRow = '';    //체크된 체크박스의 value를 담기위한 변수
+      var checkCnt = 0;     //체크된 체크박스의 개수
+      var checkLast = '';   //체크된 체크박스 중 마지막 체크박스의 인덱스를 담기위한 변수
+      var rowid = '';       //체크된 체크박스의 모든 value의 값
+      var cnt = 0;
+
+      for(var i=0; i<len; i++){
+        if(chk[i].checked == true){
+          checkCnt++;       //체크된 체크박스의 개수
+          checkLast = i;    //체크된 체크박스의 인덱스
+        }
+      }
+
+      for(var i=0; i<len; i++){
+        if(chk[i].checked == true){ //체크가 되어있는 값 구분
+          checkRow = chk[i].value;
+
+          if(checkCnt == 1){                  //체크된 체크박스의 개수가 한 개 일때,
+            rowid += "'"+checkRow+"'";        //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+          }else{                              //체크된 체크박스의 개수가 여러 개 일때,
+            if(i == checkLast){               //체크된 체크박스 중 마지막 체크박스일 때,
+              rowid += "'"+checkRow+"'";      //'value'의 형태 (뒤에 ,(콤마)가 붙지않게)
+            }else{
+              rowid += "'"+checkRow+"',";     //'value',의 형태 (뒤에 ,(콤마)가 붙게)
+            }
+          }
+          cnt++;
+          checkRow = '';    //checkRow 초기화
+        }
+        console.log(rowid);        //'value1', 'value2', 'value3' 의 형태로 출력
+      }
+    }
+  </script>
 </head>
+
+<!-- 버튼 간격 스타일-->
+<style>
+  .edit-button{
+    float: right;
+    margin: -15px;
+  }
+</style>
 
 <body>
   <!-- NAVBAR ======================================== -->
@@ -27,17 +91,18 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">리스트</h3>
-                  <div>
-                    <button type="button" , class="btn btn-link" style="float:right;" , id="user_delete">삭제</button>
-                    <button type="button" , class="btn btn-link" style="float:right;" ,
-                      onclick="location.href='/user_reg'" ;>등록</button>
+                  <div class="edit-button">
+                    <button type="button" , class="btn btn-link", onclick="location.href='/user_reg'" ;>등록</button>
+                    <button type="button" , class="btn btn-link", id="user_delete", onclick="javascript:selectRow()">삭제</button>
+                    <button type="button" , class="btn btn-link", id="pass_rest">초기화</button>
                   </div>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">
-                    <table class="table" id="usertable" data-toggle="datatable">
+                    <table class="table" id="datatable_8" data-toggle="datatable">
                       <thead>
                         <tr>
+                          <th><input type="checkbox" name="checkall" onclick="javascript:CheckAll()"></th>
                           <th>번호</th>
                           <th>이름</th>
                           <th>ID</th>
@@ -58,6 +123,7 @@
                             }
                         %>
                         <tr>
+                          <td><input type="checkbox" name="chk_unit[]" id="chk_no" value="<%=data.no%>" /></td>
                           <td><%=data.no%></td>
                           <td><%=data.name%></td>
                           <td><%=data.id%></td>
@@ -73,182 +139,6 @@
                       <% } %>
                       </tbody>
                     </table>
-                  </div>
-                </div>
-                <div class="modal fade" id="modal1">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <!-- header title -->
-                        <h4 class="modal-title">회원 정보</h4>
-                        <!-- 닫기(x) 버튼 -->
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                      </div>
-                      <!-- body -->
-                      <div class="modal-body">
-                        <!--여기에 외부에서 작성한 테이블 들어옴-->
-                      </div>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>비밀번호</th>
-                            <th>이름</th>
-                            <th>권한</th>
-                            <th>가입날짜</th>
-                            <th>수정날짜</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>admin</td>
-                            <td>admin <button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>관리자</td>
-                            <td>관리자</td>
-                            <td>2022-06-20</td>
-                            <td>2022-06-20</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <!-- Footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal fade" id="modal2">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <!-- header title -->
-                        <h4 class="modal-title">회원 정보</h4>
-                        <!-- 닫기(x) 버튼 -->
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                      </div>
-                      <!-- body -->
-                      <div class="modal-body">
-                        <!--여기에 외부에서 작성한 테이블 들어옴-->
-                      </div>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>비밀번호</th>
-                            <th>이름</th>
-                            <th>권한</th>
-                            <th>가입날짜</th>
-                            <th>수정날짜</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>toast</td>
-                            <td>@revies535<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>김남주</td>
-                            <td>사용자</td>
-                            <td>2022-03-14</td>
-                            <td>2022-05-12</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <!-- Footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal fade" id="modal3">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <!-- header title -->
-                        <h4 class="modal-title">회원 정보</h4>
-                        <!-- 닫기(x) 버튼 -->
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                      </div>
-                      <!-- body -->
-                      <div class="modal-body">
-                        <!--여기에 외부에서 작성한 테이블 들어옴-->
-                      </div>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>비밀번호</th>
-                            <th>이름</th>
-                            <th>권한</th>
-                            <th>가입날짜</th>
-                            <th>수정날짜</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>cat432</td>
-                            <td>jkefdsktw!<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>나도현</td>
-                            <td>사용자</td>
-                            <td>2022-04-03</td>
-                            <td>2022-04-10</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <!-- Footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="modal fade" id="modal4">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <!-- header title -->
-                        <h4 class="modal-title">회원 정보</h4>
-                        <!-- 닫기(x) 버튼 -->
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                      </div>
-                      <!-- body -->
-                      <div class="modal-body">
-                        <!--여기에 외부에서 작성한 테이블 들어옴-->
-                      </div>
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>비밀번호</th>
-                            <th>이름</th>
-                            <th>권한</th>
-                            <th>가입날짜</th>
-                            <th>수정날짜</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>fsdtuw4</td>
-                            <td>gd$3sdfs<button id="modi" type="button" class="btn btn-danger">초기화</button></td>
-                            <td>도슬기</td>
-                            <td>사용자</td>
-                            <td>2022-05-12</td>
-                            <td>2022-06-21</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <!-- Footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                      </div>
-
-                    </div>
                   </div>
                 </div>
               </div> <!-- / .panel -->

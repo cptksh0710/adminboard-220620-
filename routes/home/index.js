@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const db = require('../../app/models/db.js');
 const ctrl = require("./home.ctrl");
+var passport = require('../../app/config/passport.js')
 
 // 페이지 라우팅 설정
 router.get("/", ctrl.start);
@@ -25,23 +26,35 @@ router.get("/code_reg", ctrl.codereg);
 router.get("/export", ctrl.dataexport);
 router.get("/datalist", ctrl.datalist);
 
+//로그인
+router.post('/', function(request,response,next){
+    var errors = {};
+    var isValid = true;
+
+    if(!request.body.user_id){
+      isValid = false;
+      errors.user_id = 'ID를 입력해주세요.';
+    }
+    if(!request.body.password){
+      isValid = false;
+      errors.password = 'Password를 입력해주세요.';
+    }
+
+    if(isValid){
+      next();
+    }
+    else {
+      request.flash('errors',errors);
+      response.redirect('/');
+    }
+  },
+  passport.authenticate('local-login', {
+    successRedirect : '/auth',
+    failureRedirect : '/'
+  }
+));
+
 // 로그아웃
-/*
-router.get('/logout', function (request, response) { 
-  request.session.destroy(function(err){ 
-    response.clearCookie("sid");
-    response.redirect('/'); 
-  });
- }); */
-
-/*
-router.get('/logout', function (req, res) { 
-  req.session.destroy(() => { 
-    res.clearCookie("sid");
-    res.redirect('/'); 
-  });
-});*/
-
 router.get("/logout", async function (req, res, next) {
   var session = req.session;
   try {
@@ -60,5 +73,12 @@ router.get("/logout", async function (req, res, next) {
   res.clearCookie("sid");
   res.redirect("/");
 });
+
+//passport 로그아웃 관련
+/*
+router.get('/logout', function(reqeust, response) {
+  reqeust.logout();
+  response.redirect('/');
+});*/
 
 module.exports = router;

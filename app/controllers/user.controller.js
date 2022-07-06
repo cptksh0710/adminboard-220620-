@@ -37,7 +37,7 @@ exports.findAll = (req,res)=>{
       });
 };
 
-// admin테이블 no로 조회
+// user테이블 no로 조회
 exports.findOne = (req,res)=>{
   User.findById(req.params.userNo, (err, data) => {
         if (err) {

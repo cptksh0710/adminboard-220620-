@@ -2,6 +2,8 @@ module.exports = app =>{
   const connection = require("../models/db.js")
   const user = require("../controllers/user.controller.js");
 
+
+
   //로그인 인증
   app.post('/auth', function(request, response) {
     // Capture the input fields
@@ -37,13 +39,13 @@ module.exports = app =>{
   // 전체 조회 
   app.get("/user", user.findAll);
 
-  // admin테이블 no로 조회
+  // user테이블 no로 조회
   app.get("/user/:userNo", user.findOne);
 
-  // admin테이블 no로 수정
+  // user테이블 no로 수정
   app.put("/user/:userNo", user.update);
 
-  // admin테이블 no로 삭제
+  // user테이블 no로 삭제
   app.delete("/user/:userNo", user.delete);
 
   // 전체 삭제
