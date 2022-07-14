@@ -1,13 +1,26 @@
+<style>
+  .sidebar_font {
+    margin: 20px;
+    font-weight: bold;
+    font-size: small;
+  }
+
+  .dropdown-menu {
+    display: none;
+  }
+</style>
+
 <div class="sidebar">
   <!-- Sidebar: Close button (mobile devices) -->
   <div class="sidebar__close">
-    <img src="assets/img/icons/icon_close.svg" alt="Close sidebar">
+    <img src="img/icons/icon_close.svg" alt="Close sidebar">
   </div>
 
   <!-- Sidebar: 접속자 -->
   <div class="sidebar__user">
     <!-- Sidebar: 접속자 정보 -->
-    <a class="sidebar-user__info" role="button" href="#sidebar-user__nav" data-toggle="collapse" aria-expanded="false" aria-controls="sidebar-user__nav">
+    <a class="sidebar-user__info" role="button" href="#sidebar-user__nav" data-toggle="collapse" aria-expanded="false"
+      aria-controls="sidebar-user__nav">
       <h4>admin</h4>
       <p>관리자<i class="fa fa-caret-down"></i></p>
     </a>
@@ -22,14 +35,62 @@
         </a>
       </li>
       <li>
-        <a href="/">
+        <a href="#" onclick="document.getElementById('logout').submit();">
           <i class="fa fa-sign-out"></i> 로그아웃
         </a>
+        <form id="logout" action="/logout" method="POST">
+        </form>
       </li>
     </ul>
   </nav>
-  <!-- Sidebar: Nav -->
-  <nav id="sidebar__nav">
-    <!-- Loaded from /sidebar.json -->
-  </nav>
+
+  <!-- Sidebar: 메뉴 -->
+  <ul class="nav sidebar__nav" id="sidemenu">
+    <div class="sidebar_font">
+      관리자 메뉴
+    </div>
+    <li>
+      <a href="/userlist">
+        <i class="fa fa-check-square"></i>
+        사용자목록
+      </a>
+    </li>
+    <div class="sidebar_font">
+      메뉴
+    </div>
+    <li>
+      <a href="/dashboard">
+        <i class="fa fa-check-square"></i>
+        대쉬보드
+      </a>
+      <a href="/import">
+        <i class="fa fa-check-square"></i>
+        자료등록
+      </a>
+    </li>
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-table"></i>
+        코드관리
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu forAnimate" role="menu">
+        <li>
+          <a href="/boardcode">
+            게시판코드
+          </a>
+        </li>
+        <li>
+          <a href="/countrycode">
+            국가코드
+          </a>
+        </li>
+        <li>
+          <a href="/langcode">
+            언어코드
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>

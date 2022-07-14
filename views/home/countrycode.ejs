@@ -5,10 +5,11 @@
   <%- include('../partials/head');%>
 </head>
 
-<!-- 코드 선택 스타일-->
+<!-- 버튼 간격 스타일-->
 <style>
-  .form-code{
-    margin: 15px;
+  .edit-button{
+    float: right;
+    margin: -15px;
   }
 </style>
 
@@ -25,7 +26,7 @@
             <div class="col-xs-12">
 
               <h3 class="page-header">
-                코드관리
+                국가 코드
               </h3>
 
             </div>
@@ -36,42 +37,51 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Code Lists</h3>
+                  <div class="edit-button">
+                    <button type="button" , class="btn btn-link", onclick="location.href='/countrycode_reg'" ;>등록</button>
+                  </div>
                 </div>
-                <div class="form-code">
-                  <label for="subject">코드 유형</label>
-                  <select class="code-select">
-                    <option selected disabled>코드를 선택하세요.</option>
-                    <option value="code_id1">게시판코드</option>
-                    <option value="code_id2">국가코드</option>
-                    <option value="code_id3">언어코드</option>
-                  </select>
-                </div>
-                <div>
-                  <button type="button" , class="btn btn-link" style="float:right;" , id="user_delete">삭제</button>
-                  <button type="button" , class="btn btn-link" style="float:right;" ,
-                    onclick="location.href='/code_reg'" ;>등록</button>
-                </div>
-
                 <div class="panel-body">
                   <div class="table-responsive">
                     <table class="table" id="datatable_8" data-toggle="datatable">
                       <thead>
                         <tr>
                           <th>번호</th>
-                          <th>코드그룹</th>
+                          <th>이름</th>
                           <th>코드명</th>
-                          <th>코드</th>
                           <th>등록일</th>
+                          <th>수정</th>
+                          <th>삭제</th>
                         </tr>
                       </thead>
                       <tbody>
+                        <%
+                        if(countryCode.length!=0){
+                          var i=1;
+                          countryCode.forEach(function(data){
+                        %>
                         <tr>
-                          <td>1</td>
-                          <td>대사관</td>
-                          <td>일본대사관</td>
-                          <td>A001231</td>
-                          <td><time datetime="2022-05-02">2022년 05월 02일</time></td>
+                          <td><%=i%></td>
+                          <td><%=data.name%></td>
+                          <td><%=data.code%></td>
+                          <td><%=data.reg_date%></td>
+                          <td>
+                            <form>
+                              <button type="button" class="btn btn-success" onclick="location.href='/countrycode_edit?id=<%=data.code_idx%>'">수정</button>
+                            </form>
+                          </td>
+                          <td>
+                            <form action="/countrycode/<%=data.code_idx%>?_method=DELETE" method="post">
+                              <input type="submit" class="btn btn-danger" value="삭제" onclick="return confirm('삭제 하시겠습니까?')"></input>
+                            </form>
+                          </td>
                         </tr>
+                        <% i++; }) %>
+                        <% } else{ %>
+                          <tr>
+                            <td colspan="6">데이터가 없습니다.</td>
+                          </tr>
+                        <% } %>
                       </tbody>
                     </table>
                   </div>

@@ -9,7 +9,7 @@
 <style>
   .edit-button{
     float: right;
-    margin: -20px;
+    margin: -15px;
   }
 </style>
 
@@ -24,9 +24,11 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-12">
+
               <h3 class="page-header">
-                사용자 목록
+                언어코드
               </h3>
+
             </div>
           </div> <!-- / .row -->
           <div class="row">
@@ -34,9 +36,9 @@
               <!-- Lists -->
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">리스트</h3>
+                  <h3 class="panel-title">Code Lists</h3>
                   <div class="edit-button">
-                    <button type="button" , class="btn btn-link", onclick="location.href='/user_reg'">등록</button>
+                    <button type="button" , class="btn btn-link", onclick="location.href='/langcode_reg'" ;>등록</button>
                   </div>
                 </div>
                 <div class="panel-body">
@@ -46,49 +48,40 @@
                         <tr>
                           <th>번호</th>
                           <th>이름</th>
-                          <th>ID</th>
-                          <th>권한</th>
-                          <th>가입날짜</th>
-                          <th>수정날짜</th>
-                          <th>초기화</th>
+                          <th>코드명</th>
+                          <th>등록일</th>
+                          <th>수정</th>
                           <th>삭제</th>
                         </tr>
                       </thead>
                       <tbody>
                         <%
-                        if(userData.length!=0){
+                        if(langCode.length!=0){
                           var i=1;
-                          userData.forEach(function(data){
-                            if(data.permission == 9){
-                              var permission = '관리자';
-                            } else{
-                              var permission = '사용자';
-                            }
+                          langCode.forEach(function(data){
                         %>
                         <tr>
                           <td><%=i%></td>
                           <td><%=data.name%></td>
-                          <td><%=data.id%></td>
-                          <td><%=permission%></td>
+                          <td><%=data.code%></td>
                           <td><%=data.reg_date%></td>
-                          <td><%=data.mod_date%></td>
                           <td>
-                            <form action="/user/<%=data.no%>?_method=PUT" method="post">
-                              <input type="submit" class="btn btn-success" value="초기화" onclick="return confirm('초기화 하시겠습니까?')"></input>
+                            <form>
+                              <button type="button" class="btn btn-success" onclick="location.href='/langcode_edit?id=<%=data.code_idx%>'">수정</button>
                             </form>
                           </td>
                           <td>
-                            <form action="/user/<%=data.no%>?_method=DELETE" method="post">
+                            <form action="/langcode/<%=data.code_idx%>?_method=DELETE" method="post">
                               <input type="submit" class="btn btn-danger" value="삭제" onclick="return confirm('삭제 하시겠습니까?')"></input>
                             </form>
                           </td>
                         </tr>
-                      <% i++; }) %>
-                      <% } else{ %>
-                        <tr>
-                          <td colspan="7">데이터가 없습니다.</td>
-                        </tr>
-                      <% } %>
+                        <% i++; }) %>
+                        <% } else{ %>
+                          <tr>
+                            <td colspan="6">데이터가 없습니다.</td>
+                          </tr>
+                        <% } %>
                       </tbody>
                     </table>
                   </div>

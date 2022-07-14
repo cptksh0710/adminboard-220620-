@@ -1,3 +1,4 @@
+const { response } = require("express");
 const sql = require("./db.js");
 
 // 생성자
@@ -16,7 +17,7 @@ User.create = (newUser, result) => {
       return;
     }
 
-    console.log("Created user: ", { no: res.insertNo, ...newUser });
+    console.log("등록된 회원 정보: ", { no: res.insertNo, ...newUser });
     result(null, { no: res.insertNo, ...newUser });
   });
 };
@@ -58,8 +59,7 @@ User.getAll = (result) => {
 // 사용자 no로 수정
 User.updateById = (no, user, result) => {
   sql.query(
-    "UPDATE user SET name = ?, id = ?, password = ? WHERE no = ?",
-    [user.name, user.id, user.password, no],
+    "UPDATE user SET password = 1234 WHERE no = ?",[no],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -69,11 +69,11 @@ User.updateById = (no, user, result) => {
 
       if (res.affectedRows == 0) {
         // 결과가 없을 시
-        result({ kind: "not_found" }, null);
+        result({ kind: "찾을 수 없습니다" }, null);
         return;
       }
 
-      console.log("updated no: ", { no: no, ...user });
+      console.log("비밀번호 초기화 회원번호: ", { no: no, ...user });
       result(null, { no: no, ...user });
     }
   );
@@ -90,11 +90,11 @@ User.remove = (no, result) => {
 
     if (res.affectedRows == 0) {
       // 결과가 없을 시
-      result({ kind: "not_found" }, null);
+      result({ kind: "찾을 수 없습니다." }, null);
       return;
     }
 
-    console.log("deleted no: ", no);
+    console.log("삭제된 회원 번호:", no);
     result(null, res);
   });
 };

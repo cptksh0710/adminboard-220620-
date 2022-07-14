@@ -21,6 +21,8 @@ exports.create = (req,res)=>{
                 message:
                 err.message || "Some error occured while creating the User."
             });
+        } else{
+          res.send('<script type="text/javascript"> alert("ID가 등록되었습니다"); window.location="/userlist"; </script>');
         };
     })
 };
@@ -70,19 +72,19 @@ exports.update = (req,res)=>{
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found No ${req.params.userNo}.`
+            message: `${req.params.userNo}번 회원을 찾을 수 없습니다.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating title " + req.params.userNo
+            message: req.params.userNo + "번 회원 수정 오류"
           });
         }
-      } else res.send(data);
+      } else res.send('<script type="text/javascript"> alert("비밀번호가 초기화 되었습니다"); window.location="/userlist"; </script>');
     }
   );
 };
 
-// no로 삭제
+// no로 회원 삭제
 exports.delete = (req,res)=>{
   User.remove(req.params.userNo, (err, data) => {
         if (err) {
@@ -92,10 +94,12 @@ exports.delete = (req,res)=>{
             });
           } else {
             res.status(500).send({
-              message: "Could not delete No " + req.params.userNo
+              message: req.params.userNo + "번 회원을 삭제할 수 없습니다 "
             });
           }
-        } else res.send({ message: `User was deleted successfully!` });
+        } else {
+          res.send('<script type="text/javascript"> alert("ID가 삭제되었습니다"); window.location="/userlist"; </script>');
+        }
       });
 };
 
@@ -107,6 +111,8 @@ exports.deleteAll = (req,res)=>{
             message:
               err.message || "삭제 오류 메시지"
           });
-        else res.send({ message: `All Users were deleted successfully!` });
+        else {
+          res.send({ message: `All Users were deleted successfully!` });
+        }
       });
 };

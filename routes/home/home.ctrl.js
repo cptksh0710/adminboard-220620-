@@ -1,14 +1,10 @@
 "use strict";
 
-const db = require('../../app/models/db.js');
+const db = require('../../models/db.js');
 
 //각각 /views/home 디렉토리 내의 ejs파일들을 렌더링
 function start (request,response){
     response.render("home/index");
-};
-
-function register (request,response){
-    response.render("home/register");
 };
 
 function dashboard (request,response){
@@ -19,8 +15,8 @@ function profile (request,response){
     response.render("home/profile");
 };
 
-// 사용자 정보 DB에서 가져오는 함수
-function userlist (request,response,next){
+// 사용자 정보, DB의 user 테이블에서 데이터를 가져오는 함수
+function userlist (request,response){
     var sql = "SELECT no, name, id, password, permission, date_format(reg_date,'%Y-%m-%d %H:%i:%s') reg_date, "+
             " date_format(mod_date,'%Y-%m-%d %H:%i:%s') mod_date from user;";
     db.query(sql, function (err, data, fields) {
@@ -34,40 +30,93 @@ function userreg (request,response){
 };
 
 function dataimport (request,response){
-    response.render("home/import");
+    var sql1 = "SELECT name, code from boardcode;";
+    var sql2 = "SELECT name, code from countrycode;";
+    var sql3 = "SELECT name, code from langcode; ";
+
+    db.query(sql1, (err, data1, fields) => {
+        if (err) throw err;
+
+        db.query(sql2, (err, data2, fields) => {
+            if (err) throw err;
+
+            db.query(sql3, (err, data3, fields) => {
+                if (err) throw err;
+            
+                response.render('home/import', {boardCode:data1, countryCode:data2, langCode:data3});
+            });
+        });
+    });
 };
 
-function code (request,response){
-    response.render("home/code");
-};
+/*
+function dataimport (request,response){
+    response.render('home/import');
+};*/
 
-function codereg (request,response){
-    response.render("home/code_reg");
-};
-
-function dataexport (request,response){
-    response.render("home/export");
-};
-
-function datalist (request,response){
-    var sql = "SELECT boardno, title, content, writer, date_format(timestr,'%Y-%m-%d %H:%i:%s') timestr "+
-    "from board;";
+//코드, DB의 boardcode, countrycode, langcode 3개의 테이블에서 데이터를 가져오는 함수
+function boardcode (request,response){
+    var sql = "SELECT code_idx, name, code,  date_format(reg_date,'%Y-%m-%d %H:%i:%s') reg_date from boardcode;";
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
-        response.render('home/datalist', { title: 'Data List', dataList: data});
+        response.render('home/boardcode', { title: 'Board Code', boardCode: data});
     });
+};
+
+function countrycode (request,response){
+    var sql = "SELECT code_idx, name, code, date_format(reg_date,'%Y-%m-%d %H:%i:%s') reg_date from countrycode;";
+    db.query(sql, function (err, data, fields) {
+        if (err) throw err;
+        response.render('home/countrycode', { title: 'Country Code', countryCode: data});
+    });
+};
+
+function langcode (request,response){
+    var sql = "SELECT code_idx, name, code, date_format(reg_date,'%Y-%m-%d %H:%i:%s') reg_date from langcode;";
+    db.query(sql, function (err, data, fields) {
+        if (err) throw err;
+        response.render('home/langcode', { title: 'Language Code', langCode: data});
+    });
+};
+
+function boardcodereg (request,response){
+    response.render("home/boardcode_reg");
+};
+
+function boardcodeedit (request,response){
+    response.render("home/boardcode_edit");
+};
+
+function countrycodereg (request,response){
+    response.render("home/countrycode_reg");
+};
+
+function countrycodeedit (request,response){
+    response.render("home/countrycode_edit");
+};
+
+function langcodereg (request,response){
+    response.render("home/langcode_reg");
+};
+
+function langcodeedit (request,response){
+    response.render("home/langcode_edit");
 };
 
 module.exports = {
     start,
-    register,
     profile,
     dashboard,
     userlist,
     userreg,
     dataimport,
-    code,
-    codereg,
-    dataexport,
-    datalist
+    boardcode,
+    countrycode,
+    langcode,
+    boardcodereg,
+    boardcodeedit,
+    countrycodereg,
+    countrycodeedit,
+    langcodereg,
+    langcodeedit
 };

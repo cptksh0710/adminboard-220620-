@@ -7,8 +7,33 @@
 
 
 <script>
-  function msg() {
-    alert("사용가능한 아이디 입니다.");
+  const connection = require("../models/db.js")
+
+  function idcheck() {
+    userid = document.getElementById("userid").value;
+
+    if(!userid){
+      alert("아이디를 입력해주세요.");
+    }else{
+      connection.query('SELECT * FROM user WHERE id = ?', userid, (err,res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        // 아이디가 존재 한다면
+        if (res.length) {
+          alert("이미 사용중인 아이디 입니다.");
+          /*
+          console.log("found user: ", res[0]);
+          result(null, res[0]);
+          return;*/
+        }
+
+        // 결과가 없을 시
+        alert("사용가능한 아이디 입니다.");
+      });
+    }
   }
 </script>
 
@@ -20,57 +45,45 @@
       <!-- SIDEBAR =================================== -->
       <%- include('../partials/sidebar');%>
         <!-- MAIN CONTENT ========================================= -->
-      <script>
-        window.onload = function(){
-            target = document.getElementById('myFile');
-            target.addEventListener('change', function(){
-                fileList = "";
-                for(i = 0; i < target.files.length; i++){
-                    fileList += target.files[i].name + '<br>';
-                }
-                target2 = document.getElementById('showFiles');
-                target2.innerHTML = fileList;
-            });
-        }
-      </script>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-12">
-            <h3 class="page-header">
-              사용자 등록
-            </h3>
-          </div>
-        </div> <!-- / .row -->
-        <div class="row">
-          <div class="col-xs-12">
-            <!-- Basic form -->
-            <div class="panel panel-default">
-              <div class="panel-heading">
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <label for="subject">사용자명</label>
-                  <input type="username" class="form-control" id="name">
-                </div>
-                <div class="form-group">
-                  <label for="user_id">사용자ID</label>
-                  <div class="in-line">
-                    <input type="userid" class="form-control" id="user_id">
-                    <input type="submit" class="btn btn-default"  onclick="msg()" value="중복확인">
-                  </div>
-                </div>
-          
-                <div class="form-group">
-                  <label for="password">비밀번호</label>
-                  <input type="password" class="form-control" id="password">
-                </div>			
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="page-header">
+                사용자 등록
+              </h3>
+            </div>
+          </div> <!-- / .row -->
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- Basic form -->
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <form action="/user" method="POST" onsubmit="confirm('등록 하시겠습니까?')">
+                    <div class="form-group">
+                      <label for="subject">사용자명</label>
+                      <input type="username" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="user_id">사용자ID</label>
+                      <div class="in-line">
+                        <input type="userid" class="form-control" id="userid" name="userid">
+                        <button type="button"  class="btn btn-default" onclick=idcheck()>중복확인</button>
+                      </div>
+                    </div>
 
-                <button type="submit" class="btn btn-primary">등록</button>
+                    <div class="form-group">
+                      <label for="password">비밀번호</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">등록</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div> 
-      </div> <!-- / .container-fluid -->
+        </div> <!-- / .container-fluid -->
     </div><!-- / .wrapper -->
-  </body>
+</body>
+
 </html>

@@ -13,9 +13,8 @@ $(function() {
     $('body').addClass('body_loaded');
 
     /*** Sidebar ***/
-
     // Sidebar: Fetch links
-    $.getJSON("sidebar.json", function(data) {
+    /*$.getJSON("sidebar.json", function(data) {
         var $sidebarNav = $('#sidebar__nav'),
             sidebarNavHtml = '';
 
@@ -71,7 +70,7 @@ $(function() {
         currentLi.addClass('active');
         currentLi.closest('.sidebar-nav__dropdown').addClass("active");
         currentLi.closest('.collapse').collapse('toggle');
-    });
+    });*/
 
     // Toggle sidebar dropdowns menus
 

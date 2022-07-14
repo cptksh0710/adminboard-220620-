@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <%- include('../partials/head');%>
+
+</head>
+
+<!-- 쿼리스트링 URL value값 추출 스크립트-->
+
+
+<body>
+  <!-- NAVBAR ======================================== -->
+  <%- include('../partials/navbar');%>
+    <!-- WRAPPER ===================================== -->
+    <div class="wrapper">
+      <!-- SIDEBAR =================================== -->
+      <%- include('../partials/sidebar');%>
+        <!-- MAIN CONTENT ========================================= -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="page-header">
+                게시판코드 수정
+              </h3>
+            </div>
+          </div> <!-- / .row -->
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- Basic form -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                  <script>
+                    /*
+                    var urlParams = new URL(location.href).searchParams;
+                    var idx = urlParams.get('index');
+                    var url = "/boardcode/" + idx + "?_method=PUT";
+
+                    document.edit_proc.action = url;
+                    */
+                    var urlParams = new URL(location.href).searchParams;
+                    var idx = urlParams.get('index');
+                    var url = "/boardcode/" + idx;
+
+
+                  </script>
+                  
+                  <form name="edit_proc" id="edit_proc" action="/boardcode/'+ idx +'" method="post" onsubmit="return validateForm();">
+                    <div class="form-group">
+                      <label for="subject">이름</label>
+                      <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="subject">코드명</label>
+                      <input type="text" class="form-control" id="code" name="code">
+                    </div>
+                    <button type="submit" class="btn btn-primary">수정</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- / .container-fluid -->
+    </div><!-- / .wrapper -->
+</body>
+
+</html>

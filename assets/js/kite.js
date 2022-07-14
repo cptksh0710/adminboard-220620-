@@ -10,7 +10,7 @@ $(function() {
     /**
      * CountTo
      */
-
+    /*
     var countTo = $(".count-to");
 
     if ( countTo.length ) {
@@ -19,7 +19,7 @@ $(function() {
             refreshInterval: 20
         });
 
-    }
+    }*/
 
 
     /*
