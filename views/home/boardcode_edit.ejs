@@ -4,10 +4,20 @@
 <head>
   <%- include('../partials/head');%>
 
+  <!-- 쿼리스트링 URL value값 추출, form action url 스크립트-->
+  <script>
+    var urlParams = new URL(window.location.href).searchParams;
+    var idx = urlParams.get('index');
+    var url = "/boardcode/" + idx + "?_method=PUT";
+
+    $(document).ready(function(){
+    $("#submitBtn").click(function(){
+      $("#edit_proc").attr("action", url);        
+      $("#edit_proc").submit(); // 폼 제출
+      });
+    });
+  </script>
 </head>
-
-<!-- 쿼리스트링 URL value값 추출 스크립트-->
-
 
 <body>
   <!-- NAVBAR ======================================== -->
@@ -32,31 +42,16 @@
                 <div class="panel-heading">
                 </div>
                 <div class="panel-body">
-                  <script>
-                    /*
-                    var urlParams = new URL(location.href).searchParams;
-                    var idx = urlParams.get('index');
-                    var url = "/boardcode/" + idx + "?_method=PUT";
-
-                    document.edit_proc.action = url;
-                    */
-                    var urlParams = new URL(location.href).searchParams;
-                    var idx = urlParams.get('index');
-                    var url = "/boardcode/" + idx;
-
-
-                  </script>
-                  
-                  <form name="edit_proc" id="edit_proc" action="/boardcode/'+ idx +'" method="post" onsubmit="return validateForm();">
+                  <form name="edit_proc" id="edit_proc" action="" method="post">
                     <div class="form-group">
-                      <label for="subject">이름</label>
+                      <label for="name">이름</label>
                       <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                      <label for="subject">코드명</label>
+                      <label for="code">코드명</label>
                       <input type="text" class="form-control" id="code" name="code">
                     </div>
-                    <button type="submit" class="btn btn-primary">수정</button>
+                    <button type="button" id="submitBtn" class="btn btn-primary">수정</button>
                   </form>
                 </div>
               </div>

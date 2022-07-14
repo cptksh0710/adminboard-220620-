@@ -79,7 +79,9 @@ exports.update = (req,res)=>{
             message: "Error updating code " + req.params.code_idx
           });
         }
-      } else res.send(data);
+      } else{
+        res.send('<script type="text/javascript"> alert("코드가 수정되었습니다"); window.location="/countrycode"; </script>');
+      }
     }
   );
 };

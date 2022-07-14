@@ -58,7 +58,7 @@ Countrycode.getAll = result =>{
 // code_idx로 수정
 Countrycode.updateById = (code_idx, countrycode, result) => {
     sql.query(
-      "UPDATE langcode SET name = ?, code = ? WHERE code_idx = ?",
+      "UPDATE countrycode SET name = ?, code = ? WHERE code_idx = ?",
       [countrycode.name, countrycode.code, code_idx],
       (err, res) => {
         if (err) {
