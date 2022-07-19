@@ -4,9 +4,6 @@ module.exports = app =>{
   // 튜플 생성
   app.post("/countrycode", countrycode.create);
 
-  // 전체 조회 
-  app.get("/countrycode", countrycode.findAll);
-
   // idx로 조회
   app.get("/countrycode/:code_idx", countrycode.findOne);
 

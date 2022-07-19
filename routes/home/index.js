@@ -1,9 +1,6 @@
 "use strict"; // 엄격 모드 / 디버깅이 쉬워지고 발생 가능한 에러들을 예방
-
 var express = require('express');
 var router = express.Router();
-var ctrl = require('./home.ctrl');
-var passport = require('../../config/passport.js');
 var multer = require('multer');
 var fs = require('fs');
 
@@ -28,58 +25,6 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage }); // 파일 업로드 미들웨어 생성
-
-// 페이지 라우팅 설정
-router.get("/", ctrl.start);
-router.get("/dashboard", ctrl.dashboard);
-router.get("/profile", ctrl.profile);
-router.get("/userlist", ctrl.userlist);
-router.get("/user_reg", ctrl.userreg);
-router.get("/import", ctrl.dataimport);
-router.get("/boardcode", ctrl.boardcode);
-router.get("/countrycode", ctrl.countrycode);
-router.get("/langcode", ctrl.langcode);
-router.get("/boardcode_reg", ctrl.boardcodereg);
-router.get("/boardcode_edit", ctrl.boardcodeedit);
-router.get("/countrycode_reg", ctrl.countrycodereg);
-router.get("/countrycode_edit", ctrl.countrycodeedit);
-router.get("/langcode_reg", ctrl.langcodereg);
-router.get("/langcode_edit", ctrl.langcodeedit);
-
-//로그인(passport 활용 참고코드)
-router.post('/', function(request,response,next){
-    var errors = {};
-    var isValid = true;
-
-    if(!request.body.user_id){
-      isValid = false;
-      errors.user_id = 'ID를 입력해주세요.';
-    }
-    if(!request.body.password){
-      isValid = false;
-      errors.password = 'Password를 입력해주세요.';
-    }
-
-    if(isValid){
-      next();
-    }
-    else {
-      request.flash('errors',errors);
-      response.redirect('/');
-    }
-  },
-  passport.authenticate('local-login', {
-    successRedirect : '/auth',
-    failureRedirect : '/'
-  }
-));
-
-//passport 로그아웃 관련
-/*
-router.get('/logout', function(reqeust, response) {
-  reqeust.logout();
-  response.redirect('/');
-});*/
 
 // 단일 파일 업로드
 router.post('/singlepart', upload.single('attachment'), (req, res, next) => {

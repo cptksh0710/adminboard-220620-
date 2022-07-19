@@ -56,8 +56,8 @@ exports.findOne = (req,res)=>{
       });
 };
 
-// no로 갱신
-exports.update = (req,res)=>{
+// index number로 비밀번호 초기화
+exports.updateNo = (req,res)=>{
     // Validate Request
   if (!req.body) {
     res.status(400).send({
@@ -65,7 +65,7 @@ exports.update = (req,res)=>{
     });
   }
 
-  User.updateById(
+  User.updateByNo(
     req.params.userNo,
     new User(req.body),
     (err, data) => {
@@ -76,12 +76,40 @@ exports.update = (req,res)=>{
           });
         } else {
           res.status(500).send({
-            message: req.params.userNo + "번 회원 수정 오류"
+            message: req.params.userNo + "번 회원 초기화 오류"
           });
         }
       } else res.send('<script type="text/javascript"> alert("비밀번호가 초기화 되었습니다"); window.location="/userlist"; </script>');
     }
   );
+};
+
+// userid로 비밀번호 변경
+exports.updateId = (req,res)=>{
+  // Validate Request
+if (!req.body) {
+  res.status(400).send({
+    message: "Content can not be empty!"
+  });
+}
+
+User.updateById(
+  req.params.userId,
+  new User(req.body),
+  (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `${req.params.userId} ID를 찾을 수 없습니다.`
+        });
+      } else {
+        res.status(500).send({
+          message: req.params.userId + " ID 비밀번호 수정 오류"
+        });
+      }
+    } else res.send('<script type="text/javascript"> alert("비밀번호가 변경 되었습니다"); window.location="/profile"; </script>');
+  }
+);
 };
 
 // no로 회원 삭제

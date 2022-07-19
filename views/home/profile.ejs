@@ -5,12 +5,6 @@
   <%- include('../partials/head');%>
 </head>
 
-<script>
-  function msg() {
-    alert("비밀번호가 변경되었습니다.");
-  }
-</script>
-
 <body>
   <!-- NAVBAR ======================================== -->
   <%- include('../partials/navbar');%>
@@ -40,11 +34,22 @@
                       <tbody>
                         <tr>
                           <th><strong>ID</strong></th>
-                          <td>admin</td>
+                          <td>
+                            <%=session.userid%>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th><strong>이름</strong></th>
+                          <td>
+                            <%=session.name%>
+                          </td>
                         </tr>
                         <tr>
                           <th><strong>권한</strong></th>
-                          <td>관리자</td>
+                          <% if(session.permission==9){ var permission='관리자' ; } else{ var permission='사용자' ; } %>
+                            <td>
+                              <%=permission%>
+                            </td>
                         </tr>
                       </tbody>
                     </table>
@@ -56,23 +61,25 @@
                     <h4 class="panel-title">비밀번호 변경</h4>
                   </div>
                   <div class="panel-body">
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">변경할 비밀번호</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control">
+                    <form action="/userid/<%=session.userid%>?_method=PUT" method="post">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">변경할 비밀번호</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="password" name="password">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-2 control-label">비밀번호 확인</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">비밀번호 확인</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="pass_check" name="pass_check">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-10 col-sm-offset-2">
-                        <button type="submit" class="btn btn-primary" onclick="msg()">변경</button>
+                      <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                          <button type="submit" class="btn btn-primary" onclick="return confirm('변경 하시겠습니까?')">변경</button>
+                        </div>
                       </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </form>

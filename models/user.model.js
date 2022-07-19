@@ -22,6 +22,26 @@ User.create = (newUser, result) => {
   });
 };
 
+// 사용자 id로 조회
+User.findOne = (user_id, result) => {
+  sql.query("SELECT * FROM user WHERE id = ?", user_id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("발견한 사용자 id: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // 결과가 없을 시
+    result({ kind: "찾을 수 없습니다." }, null);
+  });
+};
+
 // 사용자 no로 조회
 User.findById = (userNo, result) => {
   sql.query("SELECT * FROM user WHERE no = ?", userNo, (err, res) => {
@@ -32,13 +52,13 @@ User.findById = (userNo, result) => {
     }
 
     if (res.length) {
-      console.log("found user: ", res[0]);
+      console.log("발견한 사용자 index: ", res[0]);
       result(null, res[0]);
       return;
     }
 
     // 결과가 없을 시
-    result({ kind: "not_found" }, null);
+    result({ kind: "찾을 수 없습니다." }, null);
   });
 };
 
@@ -56,8 +76,8 @@ User.getAll = (result) => {
   });
 };
 
-// 사용자 no로 수정
-User.updateById = (no, user, result) => {
+// 사용자 index number로 비밀번호 초기화
+User.updateByNo = (no, user, result) => {
   sql.query(
     "UPDATE user SET password = 1234 WHERE no = ?",[no],
     (err, res) => {
@@ -75,6 +95,30 @@ User.updateById = (no, user, result) => {
 
       console.log("비밀번호 초기화 회원번호: ", { no: no, ...user });
       result(null, { no: no, ...user });
+    }
+  );
+};
+
+// 사용자 userid로 비밀번호 변경
+User.updateById = (id, user, result) => {
+  sql.query(
+    "UPDATE user SET password = ? WHERE id = ?",
+    [user.password, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // 결과가 없을 시
+        result({ kind: "찾을 수 없습니다" }, null);
+        return;
+      }
+
+      console.log("비밀번호 변경된 ID: ", { id: id, ...user });
+      result(null, { id: id, ...user });
     }
   );
 };

@@ -4,9 +4,6 @@ module.exports = app =>{
   // 튜플 생성
   app.post("/boardcode", boardcode.create);
 
-  // 전체 조회 
-  app.get("/boardcode", boardcode.findAll);
-
   // id로 조회
   app.get("/boardcode/:code_idx", boardcode.findOne);
 
