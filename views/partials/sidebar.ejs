@@ -21,8 +21,9 @@
     <!-- Sidebar: 접속자 정보 -->
     <a class="sidebar-user__info" role="button" href="#sidebar-user__nav" data-toggle="collapse" aria-expanded="false"
       aria-controls="sidebar-user__nav">
-      <h4>admin</h4>
-      <p>관리자<i class="fa fa-caret-down"></i></p>
+      <h4><%=session.name%></h4>
+      <% if(session.permission==9){ var permission='관리자'; } else{ var permission='사용자'; } %>
+      <p><%=permission%><i class="fa fa-caret-down"></i></p>
     </a>
   </div> <!-- / .sidebar__user -->
 

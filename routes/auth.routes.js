@@ -66,14 +66,6 @@ module.exports = app =>{
     }
   });
 
-  // 프로필 비밀번호 변경 관련 비밀번호 체크
-  app.post('/pass_check', function(req, res, next) {
-    var password = req.body.password;
-    var check = req.body.pass_check;
-
-    res.render('home/profile', { session: sess });
-  });
-
   //사용자 목록 페이지(관리자 권한)
   app.get("/userlist", function(req, res, next){
     var sess = req.session;

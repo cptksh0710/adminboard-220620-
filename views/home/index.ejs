@@ -21,7 +21,7 @@
             </div> <!-- / .panel-heading -->
 
             <div class="panel-body">
-              <form action="/auth" method="POST" onsubmit="return check()">
+              <form action="/auth" method="POST">
                 <div class="form-group">
                   <label for="user_id">ID</label>
                   <input type="text" name="user_id" class="form-control" id="user_id">
@@ -34,23 +34,6 @@
                   로그인
                 </button>
               </form>
-              <script>
-                function check() {
-                  const userid = document.querySelector('name=["user_id"]').value;
-                  if (!userid) {
-                    alert("ID를 입력 해 주세요");
-                    return false;
-                  }
-            
-                  const password = document.querySelector('name=["password"]').value;
-                  if (!password) {
-                    alert("비밀번호를 입력 해 주세요");
-                    return false;
-                  }
-            
-                  return true;
-                }
-              </script>
             </div> <!-- / .panel-body -->
 
           </div> <!-- / .panel -->

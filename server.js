@@ -41,6 +41,12 @@ app.use(
   })
 );
 
+app.use(function(req,res,next){
+  if (req.session) {
+      res.locals.session = req.session;
+  }
+  next();
+  });
 /*
 app.use(passport.initialize()); //passport 초기화
 app.use(passport.session()); //passport와 session 연결

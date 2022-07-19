@@ -87,29 +87,30 @@ exports.updateNo = (req,res)=>{
 // userid로 비밀번호 변경
 exports.updateId = (req,res)=>{
   // Validate Request
-if (!req.body) {
-  res.status(400).send({
-    message: "Content can not be empty!"
-  });
-}
-
-User.updateById(
-  req.params.userId,
-  new User(req.body),
-  (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `${req.params.userId} ID를 찾을 수 없습니다.`
-        });
-      } else {
-        res.status(500).send({
-          message: req.params.userId + " ID 비밀번호 수정 오류"
-        });
-      }
-    } else res.send('<script type="text/javascript"> alert("비밀번호가 변경 되었습니다"); window.location="/profile"; </script>');
+  var pattern = /\s/g;
+  if(req.body.password && req.body.pass_check){
+    if(req.body.password.match(pattern)){
+      res.status(400).send('<script type="text/javascript"> alert("공백없이 입력해주세요."); window.location="/profile"; </script>');
+    } else {
+      User.updateById(
+        req.params.userId,
+        new User(req.body),
+        (err, data) => {
+          if (err) {
+            if (err.kind === "not_found") {
+              res.status(404).send({
+                message: `${req.params.userId} ID를 찾을 수 없습니다.`
+              });
+            } else {
+              res.status(500).send('<script type="text/javascript"> alert("비밀번호가 서로 다릅니다"); window.location="/profile"; </script>');
+            }
+          } else res.send('<script type="text/javascript"> alert("비밀번호가 변경 되었습니다"); window.location="/profile"; </script>');
+        }
+      );
+    }
+  } else {
+    res.status(400).send('<script type="text/javascript"> alert("잘못된 비밀번호입니다."); window.location="/profile"; </script>');
   }
-);
 };
 
 // no로 회원 삭제

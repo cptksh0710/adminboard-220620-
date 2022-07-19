@@ -6,6 +6,7 @@ const User = function (user) {
   this.name = user.name;
   this.id = user.id;
   this.password = user.password;
+  this.pass_check = user.pass_check;
 };
 
 // 사용자 튜플 추가
@@ -101,6 +102,7 @@ User.updateByNo = (no, user, result) => {
 
 // 사용자 userid로 비밀번호 변경
 User.updateById = (id, user, result) => {
+  if(user.password === user.pass_check){
   sql.query(
     "UPDATE user SET password = ? WHERE id = ?",
     [user.password, id],
@@ -121,6 +123,9 @@ User.updateById = (id, user, result) => {
       result(null, { id: id, ...user });
     }
   );
+} else{
+  result({ kind: "비밀번호가 서로 다릅니다."}, null);
+}
 };
 
 // 사용자 no로 삭제
